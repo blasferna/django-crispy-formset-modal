@@ -65,7 +65,7 @@ class ModalEditFormsetLayout(LayoutObject):
             _type = "date"
         return _type
 
-    def render(self, form, form_style, context, template_pack=settings.CRISPY_TEMPLATE_PACK):
+    def render(self, form, context, template_pack=settings.CRISPY_TEMPLATE_PACK):
         #form.helper.disable_csrf = True
         #form.helper.form_tag = False
         #form.helper.include_media = False

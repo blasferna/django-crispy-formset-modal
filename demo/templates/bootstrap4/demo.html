@@ -1,0 +1,24 @@
+{% extends "bootstrap4/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block breadcrumb %}
+<nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'demo:b4-index' %}">Bootstrap4</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> {{class_name}} </li>
+        </ol>
+    </nav>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <section>
+    {{ docstring|safe }}
+    <hr>
+    {% crispy form %}
+    </section>
+{% endblock %}

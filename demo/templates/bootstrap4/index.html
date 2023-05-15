@@ -1,0 +1,24 @@
+{% extends 'bootstrap4/base.html' %}
+
+{% block breadcrumb %}
+<nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"> Bootstrap4 </li>
+        </ol>
+    </nav>
+</nav>
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Django Crispy Formset Modal Demo</h1>
+    <h3>Bootstrap4</h3>
+    <ul>
+        {% for demo_view in views %}
+            <li><a href="{% url demo_view.url_name %}">{{ demo_view.title }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Crispy Formset Modal Demo{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/django.min.js"></script>
+    <style>
+        .hljs {
+           background: rgb(233 236 239 / 0.27);
+        }        
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-10 mx-auto my-3">
+            {% block breadcrumb %}
+            {% endblock %}
+            <main>
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'crispy_formset_modal/js/crispy-formset-modal.min.js' %}"></script>
+<script>
+    hljs.highlightAll();
+</script>
+</body>
+</html>

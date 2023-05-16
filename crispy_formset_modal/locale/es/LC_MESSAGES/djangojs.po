@@ -1,0 +1,27 @@
+# django-crispy-formset-modal
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Blas Fernandez blasferna@gmail.com, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-16 15:55-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Blas Fernandez blasferna@gmail.com\n"
+"Language: Spanish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: crispy_formset_modal/static/crispy_formset_modal/js/crispy-formset-modal.min.js:33
+#: js/src/modal-form.js:88
+msgid "Editing row #"
+msgstr "Editando registro #"
+
+#: js/src/formset-modal.js:29
+msgid "Edit"
+msgstr "Editar"

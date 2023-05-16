@@ -86,6 +86,13 @@ $.fn[pluginName] = function () {
   }
 };
 
+
+if (typeof gettext !== 'function') {
+  window.gettext = function(str){
+      return str;
+  }
+}
+
 ready(function () {
   injectStyles();
   configureModals();

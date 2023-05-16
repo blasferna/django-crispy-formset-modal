@@ -85,7 +85,7 @@ class ModalForm {
       ".btn-open-row[data-formset-modal-toggle='" + this.modalId + "']"
     );
     let tr = openRowBt.closest("tr");
-    this._modalTitleEl.innerText = "Editing row #" + this.rownum;
+    this._modalTitleEl.innerText = gettext("Editing row #") + this.rownum;
     tr.classList.add("row-open");
   }
   _onModalClose(modal) {

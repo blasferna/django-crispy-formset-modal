@@ -30,3 +30,10 @@ docs: ## generate Mkdos HTML documentation
 
 servedocs: docs ## compile the docs watching for changes
 	mkdocs serve
+
+makemessages: ## run django makemessages command
+	python manage.py makemessages --locale=es --ignore=venv --ignore=node_modules -ignore=staticfiles --ignore=site -a -d djangojs 
+	python manage.py makemessages --locale=es --ignore=venv --ignore=site -e html -e py -a
+
+compilemessages:
+	python manage.py compilemessages --ignore=venv

@@ -29,6 +29,7 @@ def pytest_configure(debug=False):
         # Provide a lists of languages which your site supports.
         LANGUAGES=(
             ("en", "English"),
+            ("es", "Spanish"),
         ),
         # Set the default language for your site.
         LANGUAGE_CODE="en",
@@ -62,7 +63,7 @@ def pytest_configure(debug=False):
         STATIC_URL = '/static/',
         STATICFILES_DIRS = [
            os.path.join(BASE_DIR, "demo/static"),
-            os.path.join(BASE_DIR, "crispy_formset_modal/static"),
+           os.path.join(BASE_DIR, "crispy_formset_modal/static"),
         ],
         STATIC_ROOT = os.path.join(BASE_DIR, 'demo/staticfiles'),
     )

@@ -26,7 +26,7 @@ const formsetOptions = {
   selectionMarkClasses: "cfm-selection-border",
   tdClasses: "cfm-td",
   trClasses: "cfm-tr",
-  editText: "Editar",
+  editText: gettext("Edit"),
   pencilIcon: pencilSvg,
 };
 

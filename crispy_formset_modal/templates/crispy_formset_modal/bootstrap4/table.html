@@ -47,7 +47,7 @@
             <tbody>  
                 <tr class="empty-table">
                     <td class="empty-table-content text-center" colspan={{ headers|length|add:3 }}>
-                        Sin datos     
+                       {% trans "No data" %}   
                     </td>
                 </tr>
             </tbody>
@@ -66,7 +66,7 @@
         </table>
     </div>
     <div class="d-flex mb-3">
-        <button type="button" class="btn btn-primary btn-sm" data-formset-add>Agregar</button>
-        <button type="button" class="btn btn-danger btn-sm delete-selected ml-1">Eliminar</button>
+        <button type="button" class="btn btn-primary btn-sm" data-formset-add>{% trans "Add" %}</button>
+        <button type="button" class="btn btn-danger btn-sm delete-selected ml-1">{% trans "Delete" %}</button>
     </div>
 </div>

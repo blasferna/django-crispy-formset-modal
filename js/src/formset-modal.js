@@ -122,8 +122,8 @@ class FormsetModal {
     let options = {
       parent: that,
       modalId: modalId,
-      size: this.modalSize,
-      placement: this.modalPlacement,
+      size: that.modalSize,
+      placement: that.modalPlacement,
       templatePack: that.templatePack,
       onKeyUp: function (e, modalForm) {
         that._onModalFormKeyUp(e, modalForm);
@@ -405,11 +405,11 @@ class FormsetModal {
       tdEdit.classList.add("p-0")
       tdEdit.classList.add("align-middle")
       tdEdit.innerHTML = `
-                <button title="${that._options.editText}" 
+                <a title="${that._options.editText}" 
                         class="btn-open-row btn btn-sm btn btn-primary"
                         data-formset-modal-toggle="${row.modalForm.modalId}">
                         ${that._options.pencilIcon}
-                </button>`;
+                </a>`;
       let button = tdEdit.querySelector(".btn-open-row");
 
       button.addEventListener("click", function (e) {

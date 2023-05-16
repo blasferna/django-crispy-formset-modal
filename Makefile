@@ -17,11 +17,11 @@ help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 lint/flake8: ## check style with flake8
-	flake8 crispy_formset_modal
+	flake8 crispy_formset_modal demo
 lint/black: ## check style with black
-	black --check crispy_formset_modal
+	black --check crispy_formset_modal demo
 lint/isort: ## check imports order
-	isort crispy_formset_modal --check --dif 
+	isort crispy_formset_modal demo --check --dif 
 
 lint: lint/flake8 lint/black lint/isort ## check style
 

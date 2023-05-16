@@ -10,7 +10,7 @@ app_name = "demo"
 test_patterns = (
     [
         path("", index, name="test-root"),
-        path('bootstrap4/', include("demo.bootstrap4.urls")),
+        path("bootstrap4/", include("demo.bootstrap4.urls")),
     ],
     app_name,
 )

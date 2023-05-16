@@ -27,8 +27,8 @@ class CreateInvoiceDemoView(DemoViewMixin, CreateWithInlinesView):
 
     The main form is used to enter the invoice details such as the `invoice number`,
     `date`, and `client`. Then, there's a formset inside a modal for managing the items
-    related to that invoice. Each item consists of a `description`, `quantity`, and `unit
-    price`.
+    related to that invoice. Each item consists of a `description`, `quantity`, and
+    `unit price`.
 
     ```python
     class InvoiceItemForm(forms.ModelForm):

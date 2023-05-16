@@ -1,6 +1,7 @@
 from extra_views import InlineFormSetFactory
-from demo.models import InvoiceItem
+
 from demo.forms import InvoiceItemForm
+from demo.models import InvoiceItem
 
 
 class InvoiceItemInline(InlineFormSetFactory):

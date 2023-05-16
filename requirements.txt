@@ -2,4 +2,4 @@ django
 django-crispy-forms
 crispy_bootstrap4
 django-extra-views
-markdown
+markdown==3.3

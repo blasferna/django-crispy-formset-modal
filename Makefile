@@ -1,4 +1,4 @@
-.PHONY: help lint lint/flake8 lint/black
+.PHONY: help lint lint/flake8 lint/black docs servedocs
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -24,3 +24,9 @@ lint/isort: ## check imports order
 	isort crispy_formset_modal --check --dif 
 
 lint: lint/flake8 lint/black lint/isort ## check style
+
+docs: ## generate Mkdos HTML documentation
+	mkdocs build
+
+servedocs: docs ## compile the docs watching for changes
+	mkdocs serve

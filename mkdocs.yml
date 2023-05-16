@@ -1,0 +1,51 @@
+site_name: Django Crispy Formset Modal
+site_description: A Django app for managing formsets with modals using Django Crispy Forms. 
+repo_name: blasferna/django-crispy-formset-modal
+repo_url: https://github.com/blasferna/django-crispy-formset-modal
+copyright: Copyright &copy; 2023 Blas Fernández
+
+nav:
+  - Welcome: index.md
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - content.code.annotate
+    - toc.integrate
+    - toc.follow
+    - navigation.path
+    - navigation.top
+    - navigation.tabs
+    - navigation.footer
+    - content.code.copy
+  font:
+    text: Inter
+    monospace: Fira Mono
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - mdx_gh_links:
+      user: blasferna
+      repo: django-crispy-formset-modal

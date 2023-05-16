@@ -35,5 +35,9 @@ makemessages: ## run django makemessages command
 	python manage.py makemessages --locale=es --ignore=venv --ignore=node_modules -ignore=staticfiles --ignore=site -a -d djangojs 
 	python manage.py makemessages --locale=es --ignore=venv --ignore=site -e html -e py -a
 
-compilemessages:
+compilemessages: ## run django compilemessages command
 	python manage.py compilemessages --ignore=venv
+
+
+buildstatic: ## build javascript and tailwind code
+	npm run build

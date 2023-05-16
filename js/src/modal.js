@@ -1,8 +1,24 @@
 import { uuidv4 } from "./utils";
 
+const bootstrap4SizeClasses = {
+  sm: "modal-sm",
+  md: "modal-md",
+  lg: "modal-lg",
+  xl: "modal-xl",
+};
+
+const bootstrap5SizeClasses = bootstrap4SizeClasses;
+
+const templatePacks = {
+  bootstrap4: { sizes: bootstrap4SizeClasses },
+  bootstrap5: { sizes: bootstrap5SizeClasses },
+};
+
 const modalDefault = {
   placement: "center",
+  size: "md",
   backdropClasses: "cfm-modal-backdrop",
+  templatePack: null,
   onHide: () => {},
   onShow: () => {},
   onToggle: () => {},
@@ -23,6 +39,10 @@ class Modal {
   _init() {
     this._getPlacementClasses().map((c) => {
       this._targetEl.classList.add(c);
+    });
+    this._clearSize();
+    this._getSizeClasses().map((c) => {
+      this._targetEl.firstElementChild.classList.add(c);
     });
   }
   _createBackdrop(id) {
@@ -70,6 +90,20 @@ class Modal {
 
       default:
         return ["justify-content-center", "align-items-center"];
+    }
+  }
+  _getSizeClasses() {
+    return templatePacks[this._options.templatePack].sizes[
+      this._options.size
+    ].split(" ");
+  }
+  _clearSize() {
+    const element = this._targetEl.firstElementChild;
+    const obj = templatePacks[this._options.templatePack].sizes;
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        element.classList.remove(obj[key]);
+      }
     }
   }
   _addEventListeners() {

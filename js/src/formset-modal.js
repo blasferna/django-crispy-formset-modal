@@ -49,6 +49,9 @@ class FormsetModal {
   }
   _init() {
     this.variant = this._getVariant();
+    this.templatePack = this._getTemplatePack();
+    this.modalSize = this._getModalSize();
+    this.modalPlacement = this._getModalPlacement();
     // Create Formset Helper Instance
     this.$formset = $(`#${this._id}`);
     this.$formset.formset({
@@ -68,6 +71,15 @@ class FormsetModal {
   }
   _getVariant() {
     return this.targetEl.getAttribute("data-formset-variant");
+  }
+  _getTemplatePack(){
+    return this.targetEl.getAttribute("data-template-pack");
+  }
+  _getModalSize(){
+    return this.targetEl.getAttribute("data-modal-size");
+  }
+  _getModalPlacement(){
+    return this.targetEl.getAttribute("data-modal-placement");
   }
   _getModalFormInstanceByRownum(rownum) {
     let instance = false;
@@ -109,6 +121,9 @@ class FormsetModal {
     let options = {
       parent: that,
       modalId: modalId,
+      size: this.modalSize,
+      placement: this.modalPlacement,
+      templatePack: that.templatePack,
       onKeyUp: function (e, modalForm) {
         that._onModalFormKeyUp(e, modalForm);
       },

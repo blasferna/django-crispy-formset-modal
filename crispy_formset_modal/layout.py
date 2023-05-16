@@ -5,6 +5,8 @@ from django.forms.formsets import DELETION_FIELD_NAME
 from django.forms.utils import pretty_name
 from django import forms
 
+from crispy_formset_modal import ModalPlacement, ModalSize
+
 
 class ModalEditLayout(CrispyLayout):
     def __init__(self, *fields):
@@ -14,10 +16,12 @@ class ModalEditLayout(CrispyLayout):
 class ModalEditFormsetLayout(LayoutObject):
     template = 'crispy_formset_modal/{template_pack}/table.html'
 
-    def __init__(self, formset_name, list_display=[], sum_columns=[]):
+    def __init__(self, formset_name, list_display=[], sum_columns=[], modal_size=ModalSize.MD, modal_placement=ModalPlacement.CENTER):
         self.formset_name = formset_name
         self.list_display = list_display
         self.sum_columns = sum_columns
+        self.modal_size = modal_size
+        self.modal_placement = modal_placement
 
     def get_headers(self, empty_form):
         html_name = lambda x: empty_form[x].html_name.split("__prefix__")[1][1:]
@@ -87,6 +91,9 @@ class ModalEditFormsetLayout(LayoutObject):
             'has_footer': len(self.sum_columns)>0,
             "form_template_name": f"crispy_formset_modal/{template_pack}/form.html",
             "modal_template_name": f"crispy_formset_modal/{template_pack}/modal.html",
+            "template_pack": template_pack,
+            "modal_size": self.modal_size,
+            "modal_placement": self.modal_placement
         })
 
         template = self.template.format(template_pack=template_pack)

@@ -62,6 +62,9 @@ class ModalForm {
     if (!this.modalInstance) {
       let deleteBt = this.targetEl.querySelector(".formset-delete");
       let modal = new Modal(this._modalEl, {
+        placement: that._options.placement,
+        size: that._options.size,
+        templatePack: that._options.templatePack,
         onHide: function (modal) {
           that._onModalClose(modal);
         },

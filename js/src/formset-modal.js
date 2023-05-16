@@ -61,6 +61,7 @@ class FormsetModal {
       this._table = this.targetEl.querySelector("table");
       this._tbody = this._table.querySelector("tbody");
       this._tfoot = this._table.querySelector("tfoot");
+      this._emptyState = this._tbody.innerHTML;
     }
     if (this.variant === variant.modal) {
       this._deleteBt = this.targetEl.querySelector(".delete-selected");
@@ -285,17 +286,6 @@ class FormsetModal {
     }
     this._checkSelectAllState();
   }
-  _getEmptyStateHtml(count) {
-    let template = `
-        <tr class="empty-table">
-            <td class="empty-table-content text-center" colspan=__colspan__>
-                Sin datos     
-            </td>
-        </tr>
-        `;
-    template = template.replace("__colspan__", count);
-    return template;
-  }
   _refresh() {
     let that = this;
     let fields = {};
@@ -341,7 +331,7 @@ class FormsetModal {
     removeChildren(this._tbody);
 
     if (rows.length === 0) {
-      this._tbody.innerHTML = this._getEmptyStateHtml(fieldNames.length + 3);
+      this._tbody.innerHTML = this._emptyState;
     }
 
     let rownum = 1;

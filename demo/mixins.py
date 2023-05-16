@@ -1,10 +1,12 @@
 import inspect
 
 import markdown
+from extra_views import SuccessMessageMixin
 
 
-class DemoViewMixin:
+class DemoViewMixin(SuccessMessageMixin):
     title = ""
+    success_message = "Record successfully created!"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

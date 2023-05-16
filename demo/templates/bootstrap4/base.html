@@ -20,6 +20,11 @@
         <div class="col col-md-10 mx-auto my-3">
             {% block breadcrumb %}
             {% endblock %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <main>
                 {% block content %}
                 {% endblock %}

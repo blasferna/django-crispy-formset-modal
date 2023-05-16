@@ -1,6 +1,6 @@
 from uuid import uuid4
-from django import template
 
+from django import template
 
 register = template.Library()
 
@@ -15,7 +15,7 @@ class UUID4Node(template.Node):
 
     def render(self, context):
         context[self.var_name] = str(uuid4())
-        return ''
+        return ""
 
 
 class EscapeScriptNode(template.Node):
@@ -42,7 +42,9 @@ def do_uuid4(parser, token):
     try:
         tag_name, var_name = token.split_contents()
     except ValueError:
-        raise template.TemplateSyntaxError("%r tag requires exactly one argument" % token.contents.split()[0])
+        raise template.TemplateSyntaxError(
+            "%r tag requires exactly one argument" % token.contents.split()[0]
+        )
     return UUID4Node(var_name)
 
 
@@ -52,6 +54,5 @@ def media(parser, token):
     parser.delete_first_token()
     return EscapeScriptNode(nodelist)
 
-do_uuid = register.tag('uuid4', do_uuid4)
 
-
+do_uuid = register.tag("uuid4", do_uuid4)

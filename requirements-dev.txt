@@ -3,3 +3,4 @@
 flake8==3.7.8
 black
 isort==5.10.1
+click==8.0.2

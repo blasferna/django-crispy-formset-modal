@@ -11,7 +11,7 @@ from demo.models import Invoice
 def index(request):
     views = [
         {
-            "url_name": "demo:b4-create-invoice",
+            "url_name": "demo:b4-invoice-and-items-management-example",
             "title": "Invoice and Items Management Example",
         }
     ]
@@ -76,4 +76,4 @@ class CreateInvoiceDemoView(DemoViewMixin, CreateWithInlinesView):
     inlines = [InvoiceItemInline]
     form_class = InvoiceForm
     template_name = "bootstrap4/demo.html"
-    success_url = reverse_lazy("demo:new-invoice")
+    success_url = reverse_lazy("demo:b4-invoice-and-items-management-example")

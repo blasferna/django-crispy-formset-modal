@@ -161,7 +161,7 @@ const bootstrap4Classes = {
   textCenter: "text-center",
   alignMiddle: "align-middle",
   pointer: "cfm-cursor-pointer",
-  editBtnClasses: "btn-open-row btn btn-sm btn btn-primary",
+  editBtn: "btn-open-row btn btn-sm btn btn-primary",
   checkbox: "checkbox",
   td: "cfm-td",
   tr: "cfm-tr",
@@ -178,6 +178,11 @@ const bootstrap4Classes = {
   itemsEnd: "align-items-end",
 };
 
+const bootstrap5Classes = {
+  ...bootstrap4Classes,
+  textRight: "text-end",
+};
+
 const bootstrap4SizeClasses = {
   sm: "modal-sm",
   md: "modal-md",
@@ -189,6 +194,7 @@ const bootstrap5SizeClasses = bootstrap4SizeClasses;
 
 const templatePacks = {
   bootstrap4: { classes: bootstrap4Classes, sizes: bootstrap4SizeClasses },
+  bootstrap5: { classes: bootstrap5Classes, sizes: bootstrap5SizeClasses },
 };
 
 export { gettext, bootstrap4Classes, templatePacks };

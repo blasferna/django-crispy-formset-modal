@@ -19,12 +19,12 @@ def pytest_configure(debug=False):
                 "NAME": "test.db",
             }
         },
-        INSTALLED_APPS=["django.contrib.staticfiles", "crispy_forms", "crispy_bootstrap4", "crispy_formset_modal", "demo"],
+        INSTALLED_APPS=["django.contrib.staticfiles", "crispy_forms", "crispy_bootstrap4", "crispy_bootstrap5", "crispy_formset_modal", "demo"],
         ROOT_URLCONF="demo.urls",
         USE_I18N=True,
         USE_L10N=True,
         # Crispy Forms
-        CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4",
+        CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap4", "bootstrap5"),
         CRISPY_TEMPLATE_PACK = "bootstrap4",
         # Provide a lists of languages which your site supports.
         LANGUAGES=(
@@ -83,6 +83,7 @@ def pytest_configure(debug=False):
                     "extra_views",
                     "crispy_forms",
                     "crispy_bootstrap4",
+                    "crispy_bootstrap5",
                     "crispy_formset_modal",
                     "demo",
                 ],

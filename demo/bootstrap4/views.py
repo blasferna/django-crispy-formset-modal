@@ -15,7 +15,11 @@ def index(request):
             "title": "Invoice and Items Management Example",
         }
     ]
-    return render(request, "bootstrap4/index.html", context={"views": views})
+    return render(
+        request,
+        "demo_index.html",
+        context={"views": views, "template_pack": "bootstrap4"},
+    )
 
 
 class CreateInvoiceDemoView(DemoViewMixin, CreateWithInlinesView):
@@ -61,7 +65,7 @@ class CreateInvoiceDemoView(DemoViewMixin, CreateWithInlinesView):
                         list_display=["description", "quantity", "unit_price"],
                     ),
                 ),
-                Submit("submit", "Save", css_class="btn btn-primary float-right"),
+                Submit("submit", "Save", css_class="btn btn-primary"),
             )
 
         class Meta:
@@ -75,5 +79,6 @@ class CreateInvoiceDemoView(DemoViewMixin, CreateWithInlinesView):
     model = Invoice
     inlines = [InvoiceItemInline]
     form_class = InvoiceForm
-    template_name = "bootstrap4/demo.html"
+    template_pack = "bootstrap4"
+    index_url = reverse_lazy("demo:b4-index")
     success_url = reverse_lazy("demo:b4-invoice-and-items-management-example")

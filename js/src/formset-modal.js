@@ -385,7 +385,7 @@ class FormsetModal {
           td.innerText = row[field].value;
         }
         if (fields[field].type === "numeric") {
-          td.classList.add("text-right");
+          td.classList.add(...that._getClasses("textRight"));
           if (fields[field].hasSummary) {
             fields[field].summary =
               fields[field].summary + getNumberValue(row[field].value);
@@ -405,7 +405,7 @@ class FormsetModal {
       tdEdit.classList.add(...that._getClasses("alignMiddle"));
       tdEdit.innerHTML = `
                 <a title="${that._options.editText}" 
-                        class="${that._getClasses("editBtnClasses").join(" ")}"
+                        class="${that._getClasses("editBtn").join(" ")}"
                         data-formset-modal-toggle="${row.modalForm.modalId}">
                         ${that._options.pencilIcon}
                 </a>`;

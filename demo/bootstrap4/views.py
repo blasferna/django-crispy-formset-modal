@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from extra_views import CreateWithInlinesView
 
-from demo.forms import InvoiceForm
+from demo.bootstrap4.forms import InvoiceForm
 from demo.inlines import InvoiceItemInline
 from demo.mixins import DemoViewMixin
 from demo.models import Invoice

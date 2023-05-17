@@ -19,13 +19,20 @@ def pytest_configure(debug=False):
                 "NAME": "test.db",
             }
         },
-        INSTALLED_APPS=["django.contrib.staticfiles", "crispy_forms", "crispy_bootstrap4", "crispy_bootstrap5", "crispy_formset_modal", "demo"],
+        INSTALLED_APPS=[
+            "django.contrib.staticfiles",
+            "crispy_forms",
+            "crispy_bootstrap4",
+            "crispy_bootstrap5",
+            "crispy_formset_modal",
+            "demo",
+        ],
         ROOT_URLCONF="demo.urls",
         USE_I18N=True,
         USE_L10N=True,
         # Crispy Forms
-        CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap4", "bootstrap5"),
-        CRISPY_TEMPLATE_PACK = "bootstrap4",
+        CRISPY_ALLOWED_TEMPLATE_PACKS=("bootstrap4", "bootstrap5"),
+        CRISPY_TEMPLATE_PACK="bootstrap4",
         # Provide a lists of languages which your site supports.
         LANGUAGES=(
             ("en", "English"),
@@ -50,22 +57,21 @@ def pytest_configure(debug=False):
                 },
             },
         ],
-
-        MIDDLEWARE = [
-            'django.middleware.security.SecurityMiddleware',
-            'django.contrib.sessions.middleware.SessionMiddleware',
-            'django.middleware.common.CommonMiddleware',
-            'django.middleware.csrf.CsrfViewMiddleware',
-            'django.contrib.auth.middleware.AuthenticationMiddleware',
-            'django.contrib.messages.middleware.MessageMiddleware',
-            'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        MIDDLEWARE=[
+            "django.middleware.security.SecurityMiddleware",
+            "django.contrib.sessions.middleware.SessionMiddleware",
+            "django.middleware.common.CommonMiddleware",
+            "django.middleware.csrf.CsrfViewMiddleware",
+            "django.contrib.auth.middleware.AuthenticationMiddleware",
+            "django.contrib.messages.middleware.MessageMiddleware",
+            "django.middleware.clickjacking.XFrameOptionsMiddleware",
         ],
-        STATIC_URL = '/static/',
-        STATICFILES_DIRS = [
-           os.path.join(BASE_DIR, "demo/static"),
-           os.path.join(BASE_DIR, "crispy_formset_modal/static"),
+        STATIC_URL="/static/",
+        STATICFILES_DIRS=[
+            os.path.join(BASE_DIR, "demo/static"),
+            os.path.join(BASE_DIR, "crispy_formset_modal/static"),
         ],
-        STATIC_ROOT = os.path.join(BASE_DIR, 'demo/staticfiles'),
+        STATIC_ROOT=os.path.join(BASE_DIR, "demo/staticfiles"),
     )
 
     if debug:
@@ -73,13 +79,13 @@ def pytest_configure(debug=False):
             {
                 "ALLOWED_HOSTS": ["*"],
                 "INSTALLED_APPS": [
-                    'django.contrib.admin',
+                    "django.contrib.admin",
                     "django.contrib.auth",
                     "django.contrib.contenttypes",
                     "django.contrib.sessions",
                     "django.contrib.messages",
                     "django.contrib.staticfiles",
-                    'django.contrib.humanize',
+                    "django.contrib.humanize",
                     "extra_views",
                     "crispy_forms",
                     "crispy_bootstrap4",

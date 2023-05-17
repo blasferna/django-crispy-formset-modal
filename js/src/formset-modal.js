@@ -4,9 +4,10 @@ import {
   executeAllCalculatedFields,
   getNumberValue,
   getTextValue,
+  gettext,
   hookCalculatedFields,
-  uuidv4,
   removeChildren,
+  uuidv4
 } from "./utils";
 
 const variant = {

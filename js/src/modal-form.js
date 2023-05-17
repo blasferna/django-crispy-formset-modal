@@ -1,4 +1,5 @@
 import Modal from "./modal";
+import { gettext } from "./utils";
 
 const modalFormOptions = {
   parent: null,

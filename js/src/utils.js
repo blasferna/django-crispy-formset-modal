@@ -1,3 +1,4 @@
+let gettext = window.gettext;
 const _has = Object.prototype.hasOwnProperty;
 /**
  * Checks if the object has the property passed as argument
@@ -143,3 +144,10 @@ export function ready(fn) {
     document.addEventListener("DOMContentLoaded", fn);
   }
 }
+
+
+if (!window.django || !window.django.jsi18n_initialized) {
+  gettext = (msg) => msg;
+}
+
+export { gettext };

@@ -12,8 +12,12 @@ export default defineConfig({
     },
     outDir: 'crispy_formset_modal/static/crispy_formset_modal/js/',
     sourcemap: true,
+    minify: 'terser',
+    terserOptions: {
+      ecma: 5,
+    },
     rollupOptions: {
       external: ['jquery'],
     },
-  }
+  },
 });

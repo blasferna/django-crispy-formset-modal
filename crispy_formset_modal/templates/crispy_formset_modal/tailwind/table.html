@@ -1,0 +1,80 @@
+{% load i18n %}
+{% load formset_modal_tags %}
+
+<div id="id_{{ formset.prefix }}"
+     class="formset"
+     data-formset-prefix="{{ formset.prefix }}"
+     data-formset-variant="modal"
+     data-template-pack="{{ template_pack }}"
+     data-modal-size="{{ modal_size }}"
+     data-modal-placement="{{ modal_placement }}"
+>
+    {{ formset.management_form }}
+    <div data-formset-body class="formset-row">
+        {% for form in formset.forms %}
+        {% uuid4 dialog_id %}
+        <div data-formset-form>
+            {% include form_template_name %}
+        </div>
+        {% endfor %}
+    </div>
+    <script type="form-template" data-formset-empty-form>
+        {% escapescript %}
+            <div data-formset-form>
+                {% include form_template_name with form=formset.empty_form dialog_id='__dialog_id__' %}
+            </div>
+        {% endescapescript %}
+    </script>
+
+    <div class="mb-2 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="formset-table-view rounded-md overflow-hidden ring-1 ring-black ring-opacity-5">
+                    <table class="formset-table min-w-full divide-y divide-gray-300 mb-0">
+                        <thead class="bg-gray-50">
+                            <tr class="divide-x divide-gray-200">
+                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500 w-10">
+                                <input type="checkbox" class="select-all w-4 rounded border-gray-300 focus:ring-indigo-500 text-indigo-600 h-4">
+                            </th>
+                            <th class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wide text-gray-500 w-10">No.</th>
+                            {% for header in headers %}
+                            <th scope="col"
+                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 {% if header.type == 'numeric' %}text-center w-40{% endif %} {% if header.type == 'bool' %}text-center w-16{% endif %} {% if header.type == 'date' %}text-center w-20{% endif %}"
+                                data-field-name="{{ header.field }}"
+                                data-field-type="{{ header.type }}"
+                                {% if header.has_summary %} data-field-summary="has-summary" {% endif %}>
+                                {{ header.title }}
+                            </th>
+                            {% endfor %}
+                            <th class="px-3 py-3 text-left text-xs font-normal uppercase tracking-wide text-gray-500 w-16"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 bg-white">  
+                            <tr class="empty-table">
+                                <td class="empty-table-content text-center" colspan={{ headers|length|add:3 }}>
+                                {% trans "No data" %}   
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% if has_footer %}
+                        <tfoot class="bg-gray-50">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                {% for header in headers %}
+                                    <td class="px-3 py-3 text-sm text-right font-normal text-gray-500" {% if header.has_summary %} data-summary-column="{{ header.field }}" {% endif %}> {% if header.has_summary %} 0 {% endif %} </td>
+                                {% endfor %}
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tfoot>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-2 mr-2 flex items-center">
+        <button type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent shadow-sm text-sm font-normal rounded-md text-gray-600 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300 w-1/2 mt-1 justify-center sm:mt-auto sm:w-auto sm:justify-start" data-formset-add>{% trans "Add" %}</button>
+        <button type="button" class="delete-selected hidden justify-center items-center ml-2 px-2.5 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 w-1/2 mt-1 sm:mt-auto sm:w-auto focus:outline-none focus:ring-2 focus:ring-red-500">{% trans "Delete" %}</button>
+    </div>
+</div>

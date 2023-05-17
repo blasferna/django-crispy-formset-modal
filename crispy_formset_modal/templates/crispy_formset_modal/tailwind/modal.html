@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<div id="{{ dialog_id }}" class="hidden modal transition-opacity ease-in-out duration-300 opacity-0 fixed top-0 right-0 left-0 z-50 w-full overflow-y-auto overflow-x-hidden md:inset-0 md:h-full cfm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="relative h-full w-full max-w-4xl p-4 md:h-auto">
+      <div class="relative rounded-lg bg-white shadow max-h-screen overflow-y-auto">
+        <div class="flex items-start justify-between rounded-t px-6 py-3 modal-header">
+            <h3 class="modal-title text-lg font-medium text-gray-900">{% trans "Edit" %}</h3>
+            <button type="button" data-formset-modal-toggle="{{ dialog_id }}" class="cmf-close btn-close" aria-label="Close">
+            </button>
+        </div>
+        <div class="px-6 pt-2 pb-2 modal-body">
+            {% block body %}
+            {% endblock %}
+        </div>
+        <div class="modal-footer flex items-center justify-between px-6 py-4 space-x-2 rounded-b border-t border-gray-200">
+            <button type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-2 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2 cfm-delete" data-formset-modal-toggle="{{ dialog_id }}" data-formset-delete-button>{% trans "Delete" %}</button>
+            <button type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 cfm-close" data-formset-modal-toggle="{{ dialog_id }}">{% trans "Close" %}</button>
+        </div>
+      </div>
+    </div>
+</div>

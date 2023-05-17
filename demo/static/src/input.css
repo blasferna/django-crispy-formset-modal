@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+nav[aria-label="breadcrumb"] {
+  @apply flex;
+}
+
+ol.breadcrumb {
+  @apply inline-flex items-center space-x-1 md:space-x-3;
+}
+
+li.breadcrumb-item {
+  @apply inline-flex items-center;
+}
+
+li.breadcrumb-item > a {
+  @apply inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600;
+}

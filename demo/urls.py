@@ -13,6 +13,7 @@ test_patterns = (
         path("", index, name="test-root"),
         path("bootstrap4/", include("demo.bootstrap4.urls")),
         path("bootstrap5/", include("demo.bootstrap5.urls")),
+        path("tailwind/", include("demo.tailwind.urls")),
     ],
     app_name,
 )

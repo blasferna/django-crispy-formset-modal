@@ -38,6 +38,8 @@ makemessages: ## run django makemessages command
 compilemessages: ## run django compilemessages command
 	python manage.py compilemessages --ignore=venv
 
+buildtailwind: ## build Tailwindcss
+	npm run build:tailwind
 
 buildstatic: ## build javascript and tailwind code
 	npm run build

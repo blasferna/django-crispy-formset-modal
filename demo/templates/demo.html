@@ -8,8 +8,20 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{ index_url }}">{{ template_pack|title }}</a></li>
-          <li class="breadcrumb-item active" aria-current="page"> {{class_name}} </li>
+          <li class="breadcrumb-item">
+            <a href="{{ index_url }}">
+            {% if template_pack == "tailwind" %}
+                {% include "includes/arrow-right.html" %}
+            {% endif %}
+            {{ template_pack|title }}
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {% if template_pack == "tailwind" %}
+                {% include "includes/arrow-right.html" %}
+            {% endif %}
+            {{class_name}} 
+          </li>
         </ol>
     </nav>
 </nav>
@@ -17,13 +29,18 @@
 
 {% block content %}
     <section>
-    {{ docstring|safe }}
-    <hr>
+      <div {% if template_pack == "tailwind" %}class="prose max-w-7xl mb-3"{% endif %}>
+        {{ docstring|safe }}
+        <hr>
+      </div>
     {% if template_pack == "bootstrap4" %}
         {% crispy form form.helper "bootstrap4" %}
     {% endif %}
     {% if template_pack == "bootstrap5" %}
         {% crispy form form.helper "bootstrap5" %}
+    {% endif %}
+    {% if template_pack == "tailwind" %}
+        {% crispy form form.helper "tailwind" %}
     {% endif %}
     </section>
 {% endblock %}

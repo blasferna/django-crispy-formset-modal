@@ -65,7 +65,7 @@ class CreateInvoiceDemoView(DemoViewMixin, CreateWithInlinesView):
                         list_display=["description", "quantity", "unit_price"],
                     ),
                 ),
-                Submit("submit", "Save", css_class="btn btn-primary"),
+                Submit("submit", "Save"),
             )
 
         class Meta:

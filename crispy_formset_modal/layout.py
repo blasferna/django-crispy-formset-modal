@@ -12,9 +12,12 @@ from crispy_formset_modal import ModalPlacement, ModalSize
 
 class ModalEditLayout(CrispyLayout):
     def __init__(self, *fields):
+        css_class = (
+            "hidden" if settings.CRISPY_TEMPLATE_PACK == "tailwind" else "d-none"
+        )
         self.fields = list(
             fields
-            + (Div(Field("DELETE", css_class="formset-delete"), css_class="d-none"),)
+            + (Div(Field("DELETE", css_class="formset-delete"), css_class=css_class),)
         )
 
 

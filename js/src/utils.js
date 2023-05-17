@@ -183,6 +183,43 @@ const bootstrap5Classes = {
   textRight: "text-end",
 };
 
+const tailwindClasses = {
+  hidden: "hidden",
+  inlineFlex: "inline-flex",
+  flex: "flex",
+  relative: "relative",
+  textRight: "text-right",
+  textCenter: "text-center",
+  alignMiddle: "align-middle",
+  pointer: "cursor-pointer",
+  editBtn:
+    "btn-open-row mx-auto p-1 border border-transparent rounded-full shadow-sm text-gray-500 bg-gray-100 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500",
+  checkbox:
+    "w-4 rounded border-gray-300 focus:ring-indigo-500 text-indigo-600 h-4",
+  td: "whitespace-nowrap px-3 py-3 text-sm text-gray-500",
+  tr: "divide-x divide-gray-200 border-b",
+  selectionMark:
+    "absolute inset-y-0 left-0 w-0.5 bg-indigo-600 selection-border",
+  p0: "p-0",
+  opacity50: "opacity-50",
+  opacity100: "opacity-100",
+  backdrop:
+    "transition-opacity ease-in-out duration-300 opacity-0 bg-gray-800 fixed inset-0 z-40",
+  justifyStart: "justify-start",
+  justifyCenter: "justify-center",
+  justifyEnd: "justify-end",
+  itemsStart: "items-start",
+  itemsCenter: "items-center",
+  itemsEnd: "items-end",
+};
+
+const tailwindSizeClasses = {
+  sm: "max-w-lg",
+  md: "max-w-4xl",
+  lg: "max-w-5xl",
+  xl: "max-w-6xl",
+};
+
 const bootstrap4SizeClasses = {
   sm: "modal-sm",
   md: "modal-md",
@@ -195,6 +232,7 @@ const bootstrap5SizeClasses = bootstrap4SizeClasses;
 const templatePacks = {
   bootstrap4: { classes: bootstrap4Classes, sizes: bootstrap4SizeClasses },
   bootstrap5: { classes: bootstrap5Classes, sizes: bootstrap5SizeClasses },
+  tailwind: { classes: tailwindClasses, sizes: tailwindSizeClasses },
 };
 
 export { gettext, bootstrap4Classes, templatePacks };

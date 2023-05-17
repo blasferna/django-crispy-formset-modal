@@ -4,15 +4,22 @@
 <nav>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page"> {{ template_pack|title }} </li>
+          <li class="breadcrumb-item">
+            <a href="/">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            {% if template_pack == "tailwind" %}
+                {% include "includes/arrow-right.html" %}
+            {% endif %}
+             {{ template_pack|title }} 
+          </li>
         </ol>
     </nav>
 </nav>
 {% endblock %}
 
 {% block content %}
-<section>
+<section {% if template_pack == "tailwind"%} class="prose  max-w-7xl" {% endif %}>
     <h1>Django Crispy Formset Modal Demo</h1>
     <h3>{{ template_pack|title }} </h3>
     <ul>

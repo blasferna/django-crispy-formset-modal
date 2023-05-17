@@ -1,23 +1,8 @@
-import { uuidv4 } from "./utils";
-
-const bootstrap4SizeClasses = {
-  sm: "modal-sm",
-  md: "modal-md",
-  lg: "modal-lg",
-  xl: "modal-xl",
-};
-
-const bootstrap5SizeClasses = bootstrap4SizeClasses;
-
-const templatePacks = {
-  bootstrap4: { sizes: bootstrap4SizeClasses },
-  bootstrap5: { sizes: bootstrap5SizeClasses },
-};
+import { uuidv4, templatePacks } from "./utils";
 
 const modalDefault = {
   placement: "center",
   size: "md",
-  backdropClasses: "cfm-modal-backdrop",
   templatePack: null,
   onHide: () => {},
   onShow: () => {},
@@ -50,10 +35,10 @@ class Modal {
       const backdropEl = document.createElement("div");
       backdropEl.setAttribute("data-ref-id", id);
       backdropEl.setAttribute("modal-backdrop", "");
-      backdropEl.classList.add(...this._options.backdropClasses.split(" "));
+      backdropEl.classList.add(...this._getClasses("backdrop"));
       this._parentEl.append(backdropEl);
       backdropEl.offsetWidth;
-      backdropEl.classList.add("cfm-opacity-50");
+      backdropEl.classList.add(...this._getClasses("opacity50"));
     }
   }
   _destroyBackdropEl() {
@@ -63,39 +48,74 @@ class Modal {
     }
   }
   _getPlacementClasses() {
+    let that = this;
     switch (this._options.placement) {
       // top
       case "top-left":
-        return ["justify-content-start", "align-items-start"];
+        return [
+          that._getClasses("justifyStart", false),
+          that._getClasses("itemsStart", false),
+        ];
       case "top-center":
-        return ["justify-content-center", "align-items-start"];
+        return [
+          that._getClasses("justifyCenter", false),
+          that._getClasses("itemsStart", false),
+        ];
       case "top-right":
-        return ["justify-content-end", "align-items-start"];
+        return [
+          that._getClasses("justifyEnd", false),
+          that._getClasses("itemsStart", false),
+        ];
 
       // center
       case "center-left":
-        return ["justify-content-start", "align-items-center"];
+        return [
+          that._getClasses("justifyStart", false),
+          that._getClasses("itemsCenter", false),
+        ];
       case "center":
-        return ["justify-content-center", "align-items-center"];
+        return [
+          that._getClasses("justifyCenter", false),
+          that._getClasses("itemsCenter", false),
+        ];
       case "center-right":
-        return ["justify-content-end", "align-items-center"];
+        return [
+          that._getClasses("justifyEnd", false),
+          that._getClasses("itemsCenter", false),
+        ];
 
       // bottom
       case "bottom-left":
-        return ["justify-content-start", "align-items-end"];
+        return [
+          that._getClasses("justifyStart", false),
+          that._getClasses("itemsEnd", false),
+        ];
       case "bottom-center":
-        return ["justify-content-center", "align-items-end"];
+        return [
+          that._getClasses("justifyCenter", false),
+          that._getClasses("itemsEnd", false),
+        ];
       case "bottom-right":
-        return ["justify-content-end", "align-items-end"];
+        return [
+          that._getClasses("justifyEnd", false),
+          that._getClasses("itemsEnd", false),
+        ];
 
       default:
-        return ["justify-content-center", "align-items-center"];
+        return [
+          that._getClasses("justifyCenter", false),
+          that._getClasses("itemsCenter", false),
+        ];
     }
   }
   _getSizeClasses() {
     return templatePacks[this._options.templatePack].sizes[
       this._options.size
     ].split(" ");
+  }
+  _getClasses(name, str = false) {
+    let names = templatePacks[this._options.templatePack].classes[name];
+    return str ? names : names.split(" ");
   }
   _clearSize() {
     const element = this._targetEl.firstElementChild;
@@ -126,8 +146,8 @@ class Modal {
   }
   show() {
     const id = uuidv4();
-    this._targetEl.classList.add("d-flex");
-    this._targetEl.classList.remove("d-none");
+    this._targetEl.classList.add(...this._getClasses("flex"));
+    this._targetEl.classList.remove(...this._getClasses("hidden"));
     this._targetEl.setAttribute("aria-modal", "true");
     this._targetEl.setAttribute("role", "dialog");
     this._targetEl.removeAttribute("aria-hidden");
@@ -148,11 +168,11 @@ class Modal {
       firstEl.focus();
     }
     this._targetEl.offsetWidth;
-    this._targetEl.classList.add("cfm-opacity-100");
+    this._targetEl.classList.add(...this._getClasses("opacity100"));
   }
   hide() {
-    this._targetEl.classList.add("d-none");
-    this._targetEl.classList.remove("d-flex");
+    this._targetEl.classList.add(...this._getClasses("hidden"));
+    this._targetEl.classList.remove(...this._getClasses("flex"));
     this._targetEl.setAttribute("aria-hidden", "true");
     this._targetEl.removeAttribute("aria-modal");
     this._targetEl.removeAttribute("role");

@@ -124,6 +124,9 @@ export function injectStyles() {
       max-height: calc(100vh - 150px);
       overflow-x: auto;
     }
+    .cfm-cursor-pointer {
+      cursor: pointer;
+    }
     `;
   const style = document.createElement("style");
   style.innerHTML = css;
@@ -145,9 +148,47 @@ export function ready(fn) {
   }
 }
 
-
 if (!window.django || !window.django.jsi18n_initialized) {
   gettext = (msg) => msg;
 }
 
-export { gettext };
+const bootstrap4Classes = {
+  hidden: "d-none",
+  inlineFlex: "d-inline-flex",
+  flex: "d-flex",
+  relative: "position-relative",
+  textRight: "text-right",
+  textCenter: "text-center",
+  alignMiddle: "align-middle",
+  pointer: "cfm-cursor-pointer",
+  editBtnClasses: "btn-open-row btn btn-sm btn btn-primary",
+  checkbox: "checkbox",
+  td: "cfm-td",
+  tr: "cfm-tr",
+  selectionMark: "cfm-selection-border",
+  p0: "p-0",
+  opacity50: "cfm-opacity-50",
+  opacity100: "cfm-opacity-100",
+  backdrop: "cfm-modal-backdrop",
+  justifyStart: "justify-content-start",
+  justifyCenter: "justify-content-center",
+  justifyEnd: "justify-content-end",
+  itemsStart: "align-items-start",
+  itemsCenter: "align-items-center",
+  itemsEnd: "align-items-end",
+};
+
+const bootstrap4SizeClasses = {
+  sm: "modal-sm",
+  md: "modal-md",
+  lg: "modal-lg",
+  xl: "modal-xl",
+};
+
+const bootstrap5SizeClasses = bootstrap4SizeClasses;
+
+const templatePacks = {
+  bootstrap4: { classes: bootstrap4Classes, sizes: bootstrap4SizeClasses },
+};
+
+export { gettext, bootstrap4Classes, templatePacks };

@@ -7,7 +7,8 @@ import {
   gettext,
   hookCalculatedFields,
   removeChildren,
-  uuidv4
+  templatePacks,
+  uuidv4,
 } from "./utils";
 
 const variant = {
@@ -23,10 +24,6 @@ const pencilSvg = `
 `;
 
 const formsetOptions = {
-  checkboxClasses: "checkbox",
-  selectionMarkClasses: "cfm-selection-border",
-  tdClasses: "cfm-td",
-  trClasses: "cfm-tr",
   editText: gettext("Edit"),
   pencilIcon: pencilSvg,
 };
@@ -74,13 +71,16 @@ class FormsetModal {
   _getVariant() {
     return this.targetEl.getAttribute("data-formset-variant");
   }
-  _getTemplatePack(){
+  _getTemplatePack() {
     return this.targetEl.getAttribute("data-template-pack");
   }
-  _getModalSize(){
+  _getClasses(name) {
+    return templatePacks[this.templatePack].classes[name].split(" ");
+  }
+  _getModalSize() {
     return this.targetEl.getAttribute("data-modal-size");
   }
-  _getModalPlacement(){
+  _getModalPlacement() {
     return this.targetEl.getAttribute("data-modal-placement");
   }
   _getModalFormInstanceByRownum(rownum) {
@@ -260,11 +260,11 @@ class FormsetModal {
     }
 
     if (showDeleteBt) {
-      deleteBt.classList.remove("d-none");
-      deleteBt.classList.add("d-inline-flex");
+      deleteBt.classList.remove(...this._getClasses("hidden"));
+      deleteBt.classList.add(...this._getClasses("inlineFlex"));
     } else {
-      deleteBt.classList.remove("d-inline-flex");
-      deleteBt.classList.add("d-none");
+      deleteBt.classList.remove(...this._getClasses("inlineFlex"));
+      deleteBt.classList.add(...this._getClasses("hidden"));
     }
   }
   _checker(tr, td, formsetFormEl, checkbox) {
@@ -275,13 +275,13 @@ class FormsetModal {
     }
     if (checkbox.checked) {
       let divSel = document.createElement("div");
-      td.classList.add("position-relative");
-      divSel.classList.add(...this._options.selectionMarkClasses.split(" "));
+      td.classList.add(...this._getClasses("relative"));
+      divSel.classList.add(...this._getClasses("selectionMark"));
       td.prepend(divSel);
       formsetFormEl.setAttribute("data-formset-form-selected", "selected");
       tr.classList.add("selected");
     } else {
-      checkbox.classList.remove("position-relative");
+      checkbox.classList.remove(...this._getClasses("relative"));
       tr.classList.remove("selected");
       formsetFormEl.removeAttribute("data-formset-form-selected");
     }
@@ -340,7 +340,7 @@ class FormsetModal {
       row.modalForm.rownum = rownum;
       // Table row
       let tr = document.createElement("tr");
-      tr.classList.add(...that._options.trClasses.split(" "));
+      tr.classList.add(...that._getClasses("tr"));
       tr.setAttribute("data-rownum", rownum);
       // Highlight row if there are non field errors
       if (row.modalForm.hasNonFieldError()) {
@@ -350,21 +350,18 @@ class FormsetModal {
       let tdSel = document.createElement("td");
       let selCheckbox = document.createElement("input");
       selCheckbox.setAttribute("type", "checkbox");
-      selCheckbox.classList.add(...that._options.checkboxClasses.split(" "));
+      selCheckbox.classList.add(...that._getClasses("checkbox"));
       selCheckbox.classList.add("select-row");
       tdSel.appendChild(selCheckbox);
-      //tdSel.classList.add('w-10');
-      //tdSel.classList.add('text-center', 'dark:bg-gray-700', 'dark:border-gray-600');
       selCheckbox.addEventListener("change", function (e) {
         that._checker(tr, tdSel, row.modalForm.targetEl, e.target);
       });
       tr.appendChild(tdSel);
       // Column for row number
       let tdNumber = document.createElement("td");
-      tdNumber.classList.add(...that._options.tdClasses.split(" "));
-      tdNumber.classList.add("w-10");
-      tdNumber.classList.add("text-right");
-      tdNumber.classList.add("cursor-pointer");
+      tdNumber.classList.add(...that._getClasses("td"));
+      tdNumber.classList.add(...that._getClasses("textRight"));
+      tdNumber.classList.add(...that._getClasses("pointer"));
       tdNumber.innerText = rownum;
       tdNumber.addEventListener("click", function () {
         row.modalForm.open();
@@ -374,14 +371,16 @@ class FormsetModal {
       fieldNames.forEach(function (field) {
         let td = document.createElement("td");
         let hasError = row.modalForm.hasFieldError(row[field].sourceId);
-        td.classList.add(...that._options.tdClasses.split(" "));
+        td.classList.add(...that._getClasses("td"));
         if (hasError.error) {
           td["style"] = "border: 1px solid #ff4545";
           td["title"] = hasError.text;
         }
         if (fields[field].type === "bool") {
           checked = row[field].value === "on" ? "checked" : "";
-          td.innerHTML = `<input type="checkbox" class="${that._options.checkboxClasses}" ${checked} disabled></input>`;
+          td.innerHTML = `<input type="checkbox" class="${that
+            ._getClasses("checkbox")
+            .join(" ")}" ${checked} disabled></input>`;
         } else {
           td.innerText = row[field].value;
         }
@@ -393,21 +392,20 @@ class FormsetModal {
           }
         }
         if (fields[field].type === "bool" || fields[field].type == "date") {
-          td.classList.add("text-center");
+          td.classList.add(...that._getClasses("textCenter"));
         }
         td.setAttribute("data-source", row[field].sourceId);
         tr.appendChild(td);
       });
       // Column for edit button
       let tdEdit = document.createElement("td");
-      tdEdit.classList.add(...that._options.tdClasses.split(" "));
-      tdEdit.classList.add("w-16");
-      tdEdit.classList.add("text-center");
-      tdEdit.classList.add("p-0")
-      tdEdit.classList.add("align-middle")
+      tdEdit.classList.add(...that._getClasses("td"));
+      tdEdit.classList.add(...that._getClasses("textCenter"));
+      tdEdit.classList.add(...that._getClasses("p0"));
+      tdEdit.classList.add(...that._getClasses("alignMiddle"));
       tdEdit.innerHTML = `
                 <a title="${that._options.editText}" 
-                        class="btn-open-row btn btn-sm btn btn-primary"
+                        class="${that._getClasses("editBtnClasses").join(" ")}"
                         data-formset-modal-toggle="${row.modalForm.modalId}">
                         ${that._options.pencilIcon}
                 </a>`;

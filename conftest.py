@@ -19,8 +19,17 @@ def pytest_configure(debug=False):
                 "NAME": "test.db",
             }
         },
+        ALLOWED_HOSTS=["*"],
         INSTALLED_APPS=[
+            "django.contrib.admin",
+            "django.contrib.auth",
+            "django.contrib.contenttypes",
+            "django.contrib.sessions",
+            "django.contrib.messages",
+            "whitenoise.runserver_nostatic",
             "django.contrib.staticfiles",
+            "django.contrib.humanize",
+            "extra_views",
             "crispy_forms",
             "crispy_bootstrap4",
             "crispy_bootstrap5",
@@ -61,6 +70,7 @@ def pytest_configure(debug=False):
         ],
         MIDDLEWARE=[
             "django.middleware.security.SecurityMiddleware",
+            "whitenoise.middleware.WhiteNoiseMiddleware",
             "django.contrib.sessions.middleware.SessionMiddleware",
             "django.middleware.common.CommonMiddleware",
             "django.middleware.csrf.CsrfViewMiddleware",
@@ -73,31 +83,12 @@ def pytest_configure(debug=False):
             os.path.join(BASE_DIR, "demo/static"),
             os.path.join(BASE_DIR, "crispy_formset_modal/static"),
         ],
-        STATIC_ROOT=os.path.join(BASE_DIR, "demo/staticfiles"),
+        STATIC_ROOT=os.path.join(BASE_DIR, "staticfiles"),
+        STORAGES = {
+            "staticfiles": {
+                "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            },
+        }
     )
-
-    if debug:
-        base_settings.update(
-            {
-                "ALLOWED_HOSTS": ["*"],
-                "INSTALLED_APPS": [
-                    "django.contrib.admin",
-                    "django.contrib.auth",
-                    "django.contrib.contenttypes",
-                    "django.contrib.sessions",
-                    "django.contrib.messages",
-                    "django.contrib.staticfiles",
-                    "django.contrib.humanize",
-                    "extra_views",
-                    "crispy_forms",
-                    "crispy_bootstrap4",
-                    "crispy_bootstrap5",
-                    "crispy_tailwind",
-                    "crispy_bulma",
-                    "crispy_formset_modal",
-                    "demo",
-                ],
-            }
-        )
     settings.configure(**base_settings)
     setup()

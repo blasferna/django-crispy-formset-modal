@@ -6,3 +6,5 @@ crispy_tailwind
 crispy_bulma
 django-extra-views
 markdown==3.3
+gunicorn
+whitenoise

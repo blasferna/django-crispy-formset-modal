@@ -2,6 +2,8 @@
 
 Reusable Django app that provides an easy way to manage and manipulate formsets using modals with Django Crispy Forms. It enables you to dynamically add, edit, and delete formsets on the frontend.
 
+![demo-view](https://github.com/blasferna/django-crispy-formset-modal/assets/8385910/1a527b11-2fd5-4b67-a7f5-66468778ce9f)
+
 ## Features
 
 * Dynamic formset operations: Add, edit, and delete formsets dynamically in a modal on the frontend.
@@ -10,7 +12,7 @@ Reusable Django app that provides an easy way to manage and manipulate formsets 
 ## Dependencies
 
 * [Django Crispy Forms](https://github.com/django-crispy-forms/django-crispy-forms): Django Crispy Formset Modal relies on Django Crispy Forms for form rendering
-* [Django Extra Views](https://github.com/AndrewIngram/django-extra-views): For handling views with formsets, Django Crispy Formset Modal requires Django Extra Views.
+* [Django Extra Views](https://github.com/AndrewIngram/django-extra-views): For handling views with formsets.
 
 ## Installation
 

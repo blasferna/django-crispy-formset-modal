@@ -1,5 +1,5 @@
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Column, Fieldset, Layout, Row
+from crispy_forms.layout import Column, Div, Fieldset, Layout, Row
 from crispy_tailwind.layout import Submit
 from django import forms
 
@@ -22,14 +22,17 @@ class InvoiceForm(forms.ModelForm):
                     list_display=["description", "quantity", "unit_price"],
                 ),
             ),
-            Submit(
-                "submit",
-                "Save",
-                css_class=(
-                    "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4"
-                    " focus:ring-blue-300 font-medium rounded-lg text-sm"
-                    " px-5 py-2.5 mr-2 mb-2"
+            Div(
+                Submit(
+                    "submit",
+                    "Save",
+                    css_class=(
+                        "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4"
+                        " focus:ring-blue-300 font-medium rounded-lg text-sm"
+                        " px-5 py-2.5 mb-2"
+                    ),
                 ),
+                css_class="flex justify-end",
             ),
         )
 

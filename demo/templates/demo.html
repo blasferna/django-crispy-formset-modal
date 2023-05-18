@@ -29,7 +29,7 @@
 
 {% block content %}
     <section>
-      <div {% if template_pack == "tailwind" %}class="prose max-w-7xl mb-3"{% endif %}>
+      <div {% if template_pack == "tailwind" %}class="prose sm:max-w-4xl mb-3"{% endif %}>
         {{ docstring|safe }}
         <hr>
       </div>

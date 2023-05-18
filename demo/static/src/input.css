@@ -7,7 +7,7 @@ nav[aria-label="breadcrumb"] {
 }
 
 ol.breadcrumb {
-  @apply inline-flex items-center space-x-1 md:space-x-3;
+  @apply inline-flex items-center space-x-1;
 }
 
 li.breadcrumb-item {
@@ -16,4 +16,28 @@ li.breadcrumb-item {
 
 li.breadcrumb-item > a {
   @apply inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600;
+}
+
+li.breadcrumb-item.active {
+  @apply text-gray-500;
+}
+
+.alert-success{
+  @apply p-4 rounded bg-green-50 text-sm font-normal text-green-800
+}
+
+.alert-info{
+  @apply p-4 rounded bg-blue-50 text-sm font-normal text-blue-800
+}
+
+.alert-warning{
+  @apply p-4 rounded bg-orange-50 text-sm font-normal text-orange-800
+}
+
+.alert-error{
+  @apply p-4 rounded bg-red-50 text-sm font-normal text-red-800
+}
+
+.alert-debug{
+  @apply p-4 rounded bg-gray-50 text-sm font-normal text-gray-800
 }

@@ -31,9 +31,9 @@
     </style>
 </head>
 <body>
-<div class="container {% if template_pack == 'tailwind' %}mx-auto{% endif %}">
+<div class="{% if template_pack == 'tailwind' %}mx-5 sm:mx-auto{% else %}container{% endif %}">
     <div class="row">
-        <div class="{% if template_pack == 'tailwind' %}max-w-7xl{% else %}col col-md-10{% endif %} mx-auto my-3">
+        <div class="{% if template_pack == 'tailwind' %}max-w-4xl{% else %}col col-md-10{% endif %} mx-auto my-3">
             {% block breadcrumb %}
             {% endblock %}
             {% for message in messages %}

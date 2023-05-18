@@ -1,3 +1,5 @@
+import { bootstrapPencilIcon, tailwindPencilIcon } from "./icons";
+
 let gettext = window.gettext;
 const _has = Object.prototype.hasOwnProperty;
 /**
@@ -230,9 +232,21 @@ const bootstrap4SizeClasses = {
 const bootstrap5SizeClasses = bootstrap4SizeClasses;
 
 const templatePacks = {
-  bootstrap4: { classes: bootstrap4Classes, sizes: bootstrap4SizeClasses },
-  bootstrap5: { classes: bootstrap5Classes, sizes: bootstrap5SizeClasses },
-  tailwind: { classes: tailwindClasses, sizes: tailwindSizeClasses },
+  bootstrap4: {
+    classes: bootstrap4Classes,
+    sizes: bootstrap4SizeClasses,
+    pencilIcon: bootstrapPencilIcon,
+  },
+  bootstrap5: {
+    classes: bootstrap5Classes,
+    sizes: bootstrap5SizeClasses,
+    pencilIcon: bootstrapPencilIcon,
+  },
+  tailwind: {
+    classes: tailwindClasses,
+    sizes: tailwindSizeClasses,
+    pencilIcon: tailwindPencilIcon,
+  },
 };
 
 export { gettext, bootstrap4Classes, templatePacks };

@@ -14,6 +14,7 @@ test_patterns = (
         path("bootstrap4/", include("demo.bootstrap4.urls")),
         path("bootstrap5/", include("demo.bootstrap5.urls")),
         path("tailwind/", include("demo.tailwind.urls")),
+        path("bulma/", include("demo.bulma.urls")),
     ],
     app_name,
 )

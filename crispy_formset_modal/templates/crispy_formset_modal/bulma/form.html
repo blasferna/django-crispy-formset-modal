@@ -1,0 +1,22 @@
+{% extends modal_template_name %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    {% if form.helper %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+        {% crispy form %}
+    {% else %}
+        {% if form.errors %}
+            {% for error in form.non_field_errors %}
+            <div class="message is-danger non-field-error" role="alert">
+                <div class="message-body">
+                {{ error|escape }}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {{ form|crispy }}
+    {% endif %}
+{% endblock %}

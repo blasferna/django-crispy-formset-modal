@@ -5,8 +5,8 @@
 
 {% block breadcrumb %}
 <nav>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+    <nav {% if template_pack == "bulma" %}class="breadcrumb" {% endif %}aria-label="breadcrumb">
+        <ol {% if template_pack != "bulma" %}class="breadcrumb"{% endif %}>
           <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item">
             <a href="{{ index_url }}">
@@ -16,7 +16,7 @@
             {{ template_pack|title }}
             </a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">
+          <li class="breadcrumb-item {% if template_pack == "bulma" %}is-{% endif %}active" aria-current="page">
             {% if template_pack == "tailwind" %}
                 {% include "includes/arrow-right.html" %}
             {% endif %}
@@ -29,7 +29,7 @@
 
 {% block content %}
     <section>
-      <div {% if template_pack == "tailwind" %}class="prose sm:max-w-4xl mb-3"{% endif %}>
+      <div {% if template_pack == "tailwind" %}class="prose sm:max-w-4xl mb-3"{% endif %}{% if template_pack == "bulma" %}class="content"{% endif %}>
         {{ docstring|safe }}
         <hr>
       </div>
@@ -41,6 +41,9 @@
     {% endif %}
     {% if template_pack == "tailwind" %}
         {% crispy form form.helper "tailwind" %}
+    {% endif %}
+    {% if template_pack == "bulma" %}
+        {% crispy form form.helper "bulma" %}
     {% endif %}
     </section>
 {% endblock %}

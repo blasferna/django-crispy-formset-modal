@@ -3,5 +3,6 @@ django-crispy-forms
 crispy_bootstrap4
 crispy_bootstrap5
 crispy_tailwind
+crispy_bulma
 django-extra-views
 markdown==3.3

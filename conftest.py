@@ -25,6 +25,7 @@ def pytest_configure(debug=False):
             "crispy_bootstrap4",
             "crispy_bootstrap5",
             "crispy_tailwind",
+            "crispy_bulma",
             "crispy_formset_modal",
             "demo",
         ],
@@ -32,7 +33,7 @@ def pytest_configure(debug=False):
         USE_I18N=True,
         USE_L10N=True,
         # Crispy Forms
-        CRISPY_ALLOWED_TEMPLATE_PACKS=("bootstrap4", "bootstrap5", "tailwind"),
+        CRISPY_ALLOWED_TEMPLATE_PACKS=("bootstrap4", "bootstrap5", "tailwind", "bulma"),
         CRISPY_TEMPLATE_PACK="bootstrap4",
         # Provide a lists of languages which your site supports.
         LANGUAGES=(
@@ -92,6 +93,7 @@ def pytest_configure(debug=False):
                     "crispy_bootstrap4",
                     "crispy_bootstrap5",
                     "crispy_tailwind",
+                    "crispy_bulma",
                     "crispy_formset_modal",
                     "demo",
                 ],

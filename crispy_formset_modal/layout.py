@@ -9,12 +9,18 @@ from django.template.loader import render_to_string
 
 from crispy_formset_modal import ModalPlacement, ModalSize
 
+HIDDEN_CLASSES = {
+    "tailwind": "hidden",
+    "bootstrap4": "d-none",
+    "bootstrap5": "d-none",
+    "bulma": "is-hidden",
+}
+
 
 class ModalEditLayout(CrispyLayout):
     def __init__(self, *fields):
-        css_class = (
-            "hidden" if settings.CRISPY_TEMPLATE_PACK == "tailwind" else "d-none"
-        )
+        css_class = HIDDEN_CLASSES.get(settings.CRISPY_TEMPLATE_PACK, "")
+
         self.fields = list(
             fields
             + (Div(Field("DELETE", css_class="formset-delete"), css_class=css_class),)

@@ -2,12 +2,12 @@
 
 {% block breadcrumb %}
 <nav>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+    <nav {% if template_pack == "bulma" %}class="breadcrumb" {% endif %}aria-label="breadcrumb">
+        <ol {% if template_pack != "bulma" %}class="breadcrumb"{% endif %}>
           <li class="breadcrumb-item">
             <a href="/">Home</a>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">
+          <li class="breadcrumb-item {% if template_pack == "bulma" %}is-{% endif %}active" aria-current="page">
             {% if template_pack == "tailwind" %}
                 {% include "includes/arrow-right.html" %}
             {% endif %}
@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block content %}
-<section {% if template_pack == "tailwind"%} class="prose  max-w-7xl" {% endif %}>
+<section {% if template_pack == "tailwind"%} class="prose  max-w-7xl" {% endif %}{% if template_pack == "bulma"%}class="content"{% endif %}>
     <h1>Django Crispy Formset Modal Demo</h1>
     <h3>{{ template_pack|title }} </h3>
     <ul>

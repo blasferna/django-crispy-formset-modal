@@ -1,0 +1,19 @@
+{% load i18n %}
+
+<div id="{{ dialog_id }}" class="modal cfm" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:200;">
+    <div class="modal-card is-full">
+        <div class="modal-card-head">
+            <h5 class="modal-title modal-card-title">{% trans "Edit" %}</h5>
+            <button type="button" data-formset-modal-toggle="{{ dialog_id }}" class="cmf-close delete" aria-label="Close">
+            </button>
+        </div>
+        <div class="modal-card-body">
+            {% block body %}
+            {% endblock %}
+        </div>
+        <div class="modal-footer modal-card-foot">
+            <button type="button" class="button is-danger cfm-delete" data-formset-modal-toggle="{{ dialog_id }}" data-formset-delete-button>{% trans "Delete" %}</button>
+            <button type="button" class="button cfm-close" data-formset-modal-toggle="{{ dialog_id }}">{% trans "Close" %}</button>
+        </div>
+    </div>
+</div>

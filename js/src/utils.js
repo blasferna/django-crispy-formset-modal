@@ -163,7 +163,7 @@ const bootstrap4Classes = {
   textCenter: "text-center",
   alignMiddle: "align-middle",
   pointer: "cfm-cursor-pointer",
-  editBtn: "btn-open-row btn btn-sm btn btn-primary",
+  editBtn: "btn-open-row btn btn-sm btn-primary",
   checkbox: "checkbox",
   td: "cfm-td",
   tr: "cfm-tr",
@@ -215,6 +215,33 @@ const tailwindClasses = {
   itemsEnd: "items-end",
 };
 
+const bulmaClasses = {
+  hidden: "is-hidden",
+  inlineFlex: "is-inline-flex",
+  flex: "is-flex",
+  relative: "is-relative",
+  textRight: "has-text-right",
+  textCenter: "has-text-center",
+  alignMiddle: "is-vcentered",
+  pointer: "cfm-cursor-pointer",
+  editBtn: "btn-open-row button is-primary is-small",
+  checkbox: "checkbox",
+  td: "cfm-td",
+  tr: "cfm-tr",
+  selectionMark: "cfm-selection-border",
+  p0: "p-0",
+  opacity50: "cfm-opacity-50",
+  opacity100: "cfm-opacity-100",
+  backdrop: "cfm-modal-backdrop",
+  justifyStart: "is-justify-content-start",
+  justifyCenter: "is-justify-content-center",
+  justifyEnd: "is-justify-content-end",
+  itemsStart: "is-align-items-start",
+  itemsCenter: "is-align-items-center",
+  itemsEnd: "is-align-items-end",
+};
+
+
 const tailwindSizeClasses = {
   sm: "max-w-lg",
   md: "max-w-4xl",
@@ -231,6 +258,13 @@ const bootstrap4SizeClasses = {
 
 const bootstrap5SizeClasses = bootstrap4SizeClasses;
 
+const bulmaSizeClasses = {
+  sm: "modal-sm",
+  md: "modal-md",
+  lg: "modal-lg",
+  xl: "modal-xl",
+};
+
 const templatePacks = {
   bootstrap4: {
     classes: bootstrap4Classes,
@@ -246,6 +280,11 @@ const templatePacks = {
     classes: tailwindClasses,
     sizes: tailwindSizeClasses,
     pencilIcon: tailwindPencilIcon,
+  },
+  bulma: {
+    classes: bulmaClasses,
+    sizes: bulmaSizeClasses,
+    pencilIcon: bootstrapPencilIcon,
   },
 };
 

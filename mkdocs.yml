@@ -6,6 +6,7 @@ copyright: Copyright &copy; 2023 Blas Fernández
 
 nav:
   - Welcome: index.md
+  - Changelog: changelog.md
 
 theme:
   name: material
@@ -45,7 +46,9 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.superfences
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
+  - markdown_include.include:
+      base_path: .
   - mdx_gh_links:
       user: blasferna
       repo: django-crispy-formset-modal

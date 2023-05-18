@@ -5,4 +5,5 @@ black
 isort==5.10.1
 click==8.0.2
 mkdocs-material
+markdown-include
 mdx-gh-links

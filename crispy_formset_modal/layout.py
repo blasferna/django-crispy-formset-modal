@@ -94,7 +94,13 @@ class ModalEditFormsetLayout(LayoutObject):
             _type = "date"
         return _type
 
-    def render(self, form, context, template_pack=settings.CRISPY_TEMPLATE_PACK):
+    def render(self, *args, **kwargs):
+        form = args[0]  # noqa F841
+        if len(args) > 2:
+            context = args[2]
+        else:
+            context = args[1]
+        template_pack = kwargs.get("template_pack", settings.CRISPY_TEMPLATE_PACK)
         formset = None
         view = context.get("view")
         inlines = context.get("inlines", [])

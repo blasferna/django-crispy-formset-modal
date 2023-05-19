@@ -18,3 +18,9 @@ class InvoiceItem(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class PaymentTerm(models.Model):
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    due_date = models.DateField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)

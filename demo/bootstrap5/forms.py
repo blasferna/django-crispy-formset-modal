@@ -28,3 +28,33 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = "__all__"
         widgets = {"date": DateInput}
+
+
+class InvoiceWithPaymentTermsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(Column("invoice_number"), Column("date")),
+            "client",
+            Fieldset(
+                "Items",
+                ModalEditFormsetLayout(
+                    "InvoiceItemInline",
+                    list_display=["description", "quantity", "unit_price"],
+                ),
+            ),
+            Fieldset(
+                "Payment Terms",
+                ModalEditFormsetLayout(
+                    "PaymentTermInline",
+                    list_display=["due_date", "amount"],
+                ),
+            ),
+            Submit("submit", "Save", css_class="btn btn-primary float-end"),
+        )
+
+    class Meta:
+        model = Invoice
+        fields = "__all__"
+        widgets = {"date": DateInput}

@@ -80,6 +80,8 @@ class InvoiceForm(forms.ModelForm):
         fields = "__all__"
 ```
 
+See this example in the [online demo](https://django-crispy-formset-modal.fly.dev/bootstrap4/invoice-with-payment-terms-example/).
+
 ## Column Summarizing
 
 Django Crispy Formset Modal allows you to define numeric fields for totaling at the footer of the corresponding HTML table. This is useful when you want to display the total amount for specific fields.

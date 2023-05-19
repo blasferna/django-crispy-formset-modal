@@ -11,6 +11,7 @@ TEMPLATES_DIR = os.path.join(DEMO_DIR, "templates")
 
 def pytest_configure(debug=False):
     base_settings = dict(
+        CSRF_TRUSTED_ORIGINS=["https://*.fly.dev", "https://*.127.0.0.1"],
         SECRET_KEY="rprowrjp43u2904u290499;,*jk4l",
         DEBUG=debug,
         DATABASES={
@@ -84,11 +85,11 @@ def pytest_configure(debug=False):
             os.path.join(BASE_DIR, "crispy_formset_modal/static"),
         ],
         STATIC_ROOT=os.path.join(BASE_DIR, "staticfiles"),
-        STORAGES = {
+        STORAGES={
             "staticfiles": {
                 "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
             },
-        }
+        },
     )
     settings.configure(**base_settings)
     setup()

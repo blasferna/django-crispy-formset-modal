@@ -7,13 +7,16 @@ Reusable Django app that provides an easy way to manage and manipulate formsets 
 ## Features
 
 * Dynamic formset operations: Add, edit, and delete formsets dynamically in a modal on the frontend.
-* Support for various Crispy Form template packs: [Bootstrap 4](https://github.com/django-crispy-forms/crispy-bootstrap4), [Bootstrap 5](https://github.com/django-crispy-forms/crispy-bootstrap5), [Tailwind](https://github.com/django-crispy-forms/crispy-tailwind), and [Bulma](https://github.com/ckrybus/crispy-bulma).
+* Generates an HTML table according to the layout definition, allowing you to determine which fields to display as columns.
+* Provides the option to define which numeric fields will be used for a totalizer at the footer of the corresponding field's column.
+* Enables mass deletion of records from the HTML table, thanks to the generation of a selection column with checkboxes that can be selected individually or collectively to delete multiple records at once.
+* Offers support for various templates packs, including [Bootstrap 4](https://github.com/django-crispy-forms/crispy-bootstrap4), [Bootstrap 5](https://github.com/django-crispy-forms/crispy-bootstrap5), [Tailwind](https://github.com/django-crispy-forms/crispy-tailwind), and [Bulma](https://github.com/ckrybus/crispy-bulma).
 
 ## Dependencies
 
 * [Django Crispy Forms](https://github.com/django-crispy-forms/django-crispy-forms): Django Crispy Formset Modal relies on Django Crispy Forms for form rendering
 * [Django Extra Views](https://github.com/AndrewIngram/django-extra-views): For handling views with formsets.
-
+* jQuery: Used to enable dynamic functionality.
 ## Installation
 
 1. Install the package using pip:

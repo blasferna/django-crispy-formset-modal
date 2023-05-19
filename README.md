@@ -2,7 +2,8 @@
 
 Reusable Django app that provides an easy way to manage and manipulate formsets using modals with Django Crispy Forms. It enables you to dynamically add, edit, and delete formsets on the frontend.
 
-![demo-view](https://github.com/blasferna/django-crispy-formset-modal/assets/8385910/1a527b11-2fd5-4b67-a7f5-66468778ce9f)
+![demo-view](https://github.com/blasferna/django-crispy-formset-modal/assets/8385910/8ee06376-e166-446c-9743-3bdbcaadf0d8)
+
 
 ## Features
 

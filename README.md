@@ -34,7 +34,7 @@ INSTALLED_APPS = [
 
 ## Usage
 
-For detailed instructions on how to use Django Crispy Formset Modal, please refer to the documentation and check out the [demo](https://django-crispy-formset-modal.fly.dev/) for practical examples.
+For detailed instructions on how to use Django Crispy Formset Modal, please refer to the [documentation](https://blasferna.github.io/django-crispy-formset-modal/) and check out the [demo](https://django-crispy-formset-modal.fly.dev/) for practical examples.
 
 ## Examples
 

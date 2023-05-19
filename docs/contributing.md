@@ -6,11 +6,11 @@ We welcome contributions from the community to help make Django Crispy Formset M
 
 2. `Contribute Code`: If you'd like to contribute code to fix a bug or implement a feature, please follow these steps:
 
-* Fork the repository on GitHub.
-* Clone your fork to your local machine.
-* Make your changes and test them thoroughly.
-* Commit your changes and push to your fork on GitHub.
-* Submit a pull request with a clear and detailed explanation of the changes.
+    * Fork the repository on GitHub.
+    * Clone your fork to your local machine.
+    * Make your changes and test them thoroughly.
+    * Commit your changes and push to your fork on GitHub.
+    * Submit a pull request with a clear and detailed explanation of the changes.
 
 3. `Improve Documentation`: Good documentation is just as important as good code. If you spot areas in the documentation that could be improved or clarified, please make the and submit a pull request.
 

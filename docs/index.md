@@ -18,7 +18,7 @@ Django Crispy Formset Modal relies on several libraries to function correctly:
 * [Django Extra Views](https://github.com/AndrewIngram/django-extra-views): For handling views with formsets.
 * jQuery: Used to enable dynamic functionality.
 
-To use Django Crispy Formset Modal, you'll need to have these dependencies installed and properly configured in your Django project. If you need help doing this, you'll find more details in the [Installation](/) section.
+To use Django Crispy Formset Modal, you'll need to have these dependencies installed and properly configured in your Django project. If you need help doing this, you'll find more details in the [Installation](./installation.md) section.
 
 This documentation will guide you through the installation, configuration, and use of Django Crispy Formset Modal. It will also provide detailed information on how to customize the package to suit your needs and troubleshoot the most common issues that may arise. If you have any questions or need further assistance, please do not hesitate to contact us.
 

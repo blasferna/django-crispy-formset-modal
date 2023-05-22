@@ -45,10 +45,12 @@ class ModalForm {
     let fieldWrapper = this.targetEl.querySelector(`#div_${fieldId}`);
     let hasError = false;
     let errorText = "";
-    fieldWrapper.querySelectorAll(".field-error").forEach(function (el) {
-      hasError = true;
-      errorText = el.innerText;
-    });
+    fieldWrapper
+      .querySelectorAll("[id^='error_']")
+      .forEach(function (el) {
+        hasError = true;
+        errorText = el.innerText;
+      });
     return { error: hasError, text: errorText };
   }
   hasNonFieldError() {

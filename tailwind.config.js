@@ -6,6 +6,7 @@ module.exports = {
     "./js/src/**/*.{html,js}",
     "./crispy_formset_modal/templates/crispy_formset_modal/tailwind/**/*.{html,js}",
     "./venv/Lib/site-packages/crispy_tailwind/**/*.{html,py}",
+    "./venv/lib/python3.8/site-packages/crispy_tailwind/**/*.{html,py}",
   ],
   theme: {
     extend: {},

@@ -30,8 +30,12 @@ export function getTextValue(el) {
   let textValue = "";
   if (type === "select") {
     let tempDiv = document.createElement("div");
-    tempDiv.innerHTML = el.options[el.selectedIndex].innerHTML;
-    textValue = tempDiv.innerText;
+    tempDiv.innerHTML = el.options[el.selectedIndex].innerText;
+    textValue = tempDiv.innerText
+      .split("\n")
+      .map((item) => item.trim())
+      .join(" ")
+      .trim();
   } else {
     if (has(el, "inputmask")) {
       textValue = el.inputmask.undoValue;
@@ -242,7 +246,6 @@ const bulmaClasses = {
   itemsCenter: "is-align-items-center",
   itemsEnd: "is-align-items-end",
 };
-
 
 const tailwindSizeClasses = {
   sm: "max-w-lg",

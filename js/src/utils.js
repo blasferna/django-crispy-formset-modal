@@ -29,7 +29,9 @@ export function getTextValue(el) {
   let type = el.tagName.toLowerCase();
   let textValue = "";
   if (type === "select") {
-    textValue = el.options[el.selectedIndex].innerText;
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = el.options[el.selectedIndex].innerHTML;
+    textValue = tempDiv.innerText;
   } else {
     if (has(el, "inputmask")) {
       textValue = el.inputmask.undoValue;

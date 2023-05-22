@@ -38,7 +38,7 @@ export function getTextValue(el) {
     } else {
       if (el.getAttribute("type") == "date") {
         if (el.value) {
-          textValue = new Date(...el.value.split("-")).toLocaleDateString();
+          textValue = el.value;
         }
       } else {
         if (el.getAttribute("type") == "checkbox") {

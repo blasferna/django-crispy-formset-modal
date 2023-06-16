@@ -8,6 +8,7 @@
      data-template-pack="{{ template_pack }}"
      data-modal-size="{{ modal_size }}"
      data-modal-placement="{{ modal_placement }}"
+     {% if edit_on_table %} data-edit-on-table {% endif %}
 >
     {{ formset.management_form }}
     <div data-formset-body class="formset-row">

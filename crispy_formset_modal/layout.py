@@ -37,12 +37,14 @@ class ModalEditFormsetLayout(LayoutObject):
         sum_columns=[],
         modal_size=ModalSize.MD,
         modal_placement=ModalPlacement.CENTER,
+        edit_on_table=True,
     ):
         self.formset_name = formset_name
         self.list_display = list_display
         self.sum_columns = sum_columns
         self.modal_size = modal_size
         self.modal_placement = modal_placement
+        self.edit_on_table = edit_on_table
 
     def get_html_name(self, empty_form, field):
         return empty_form[field].html_name.split("__prefix__")[1][1:]
@@ -126,6 +128,7 @@ class ModalEditFormsetLayout(LayoutObject):
                 "template_pack": template_pack,
                 "modal_size": self.modal_size,
                 "modal_placement": self.modal_placement,
+                "edit_on_table": self.edit_on_table,
             }
         )
 

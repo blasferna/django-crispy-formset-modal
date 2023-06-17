@@ -43,6 +43,7 @@ class FormsetModal {
     this.templatePack = this._getTemplatePack();
     this.modalSize = this._getModalSize();
     this.modalPlacement = this._getModalPlacement();
+    this.editOnTable = this._getEditOnModal();
     // Create Formset Helper Instance
     this.$formset = $(`#${this._id}`);
     this.$formset.formset({
@@ -70,7 +71,7 @@ class FormsetModal {
   _getClasses(name) {
     return templatePacks[this.templatePack].classes[name].split(" ");
   }
-  _getPencilIcon(){
+  _getPencilIcon() {
     return templatePacks[this.templatePack].pencilIcon;
   }
   _getModalSize() {
@@ -78,6 +79,9 @@ class FormsetModal {
   }
   _getModalPlacement() {
     return this.targetEl.getAttribute("data-modal-placement");
+  }
+  _getEditOnModal() {
+    return this.targetEl.hasAttribute("data-edit-on-table");
   }
   _getModalFormInstanceByRownum(rownum) {
     let instance = false;
@@ -144,7 +148,23 @@ class FormsetModal {
         .find('[data-formset-modal-toggle="__dialog_id__"]')
         .attr("data-formset-modal-toggle", id);
       let modalForm = this._newModalForm(e.target, id);
-      modalForm.open();
+      if (!this.editOnTable) {
+        modalForm.open();
+      } else {
+        this._refresh();
+        // set focus to the first editable element
+        let rows = Array.from(
+          this.targetEl.closest(".formset").querySelectorAll("tr")
+        );
+        let filteredRows = rows.filter(
+          (row) => row.querySelector("td[data-source]") !== null
+        );
+        let firstColumn =
+          filteredRows[filteredRows.length - 1].querySelector(
+            "td[data-source]"
+          );
+        firstColumn.firstChild.focus();
+      }
     }
     if (window.hasOwnProperty("calculatedFields")) {
       window.resetCalculatedFields();
@@ -265,7 +285,9 @@ class FormsetModal {
   }
   _checker(tr, td, formsetFormEl, checkbox) {
     // remove previous divSel if exists.
-    let prevDivSel = td.querySelector(".cfm-selection-border, .selection-border");
+    let prevDivSel = td.querySelector(
+      ".cfm-selection-border, .selection-border"
+    );
     if (prevDivSel) {
       prevDivSel.remove();
     }
@@ -349,7 +371,7 @@ class FormsetModal {
       selCheckbox.classList.add(...that._getClasses("checkbox"));
       selCheckbox.classList.add("select-row");
       tdSel.appendChild(selCheckbox);
-      tdSel.classList.add(...that._getClasses("td"))
+      tdSel.classList.add(...that._getClasses("td"));
       selCheckbox.addEventListener("change", function (e) {
         that._checker(tr, tdSel, row.modalForm.targetEl, e.target);
       });
@@ -367,30 +389,56 @@ class FormsetModal {
       // Mirror columns
       fieldNames.forEach(function (field) {
         let td = document.createElement("td");
-        let hasError = row.modalForm.hasFieldError(row[field].sourceId);
         td.classList.add(...that._getClasses("td"));
-        if (hasError.error) {
-          td["style"] = "border: 1px solid #ff4545";
-          td["title"] = hasError.text;
-        }
-        if (fields[field].type === "bool") {
-          checked = row[field].value === "on" ? "checked" : "";
-          td.innerHTML = `<input type="checkbox" class="${that
-            ._getClasses("checkbox")
-            .join(" ")}" ${checked} disabled></input>`;
+
+        if (that.editOnTable) {
+          let $inputOriginal = $(`#${row[field].sourceId}`);
+          let $inputTable = $inputOriginal.clone();
+          $inputTable.attr("id", row[field].sourceId + "-table");
+          $inputTable.removeAttr("name");
+
+          let eventType = "input";
+          if ($inputOriginal.is("select")) {
+            eventType = "change";
+          }
+
+          $inputTable.on(eventType, function () {
+            if (
+              $inputOriginal.is('input[type="checkbox"], input[type="radio"]')
+            ) {
+              $inputOriginal.prop("checked", $inputTable.prop("checked"));
+            } else {
+              $inputOriginal.val($inputTable.val());
+            }
+          });
+
+          $inputTable.appendTo($(td));
         } else {
-          td.innerText = row[field].value;
-        }
-        if (fields[field].type === "numeric") {
-          td.classList.add(...that._getClasses("textRight"));
-          if (fields[field].hasSummary) {
-            fields[field].summary =
-              fields[field].summary + getNumberValue(row[field].value);
+          let hasError = row.modalForm.hasFieldError(row[field].sourceId);
+          if (hasError.error) {
+            td["style"] = "border: 1px solid #ff4545";
+            td["title"] = hasError.text;
+          }
+          if (fields[field].type === "bool") {
+            checked = row[field].value === "on" ? "checked" : "";
+            td.innerHTML = `<input type="checkbox" class="${that
+              ._getClasses("checkbox")
+              .join(" ")}" ${checked} disabled></input>`;
+          } else {
+            td.innerText = row[field].value;
+          }
+          if (fields[field].type === "numeric") {
+            td.classList.add(...that._getClasses("textRight"));
+            if (fields[field].hasSummary) {
+              fields[field].summary =
+                fields[field].summary + getNumberValue(row[field].value);
+            }
+          }
+          if (fields[field].type === "bool" || fields[field].type == "date") {
+            td.classList.add(...that._getClasses("textCenter"));
           }
         }
-        if (fields[field].type === "bool" || fields[field].type == "date") {
-          td.classList.add(...that._getClasses("textCenter"));
-        }
+
         td.setAttribute("data-source", row[field].sourceId);
         tr.appendChild(td);
       });

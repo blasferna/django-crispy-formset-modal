@@ -2,10 +2,11 @@ import inspect
 
 import markdown
 from django.conf import settings
+from django.forms.widgets import MediaDefiningClass
 from extra_views import SuccessMessageMixin
 
 
-class DemoViewMixin(SuccessMessageMixin):
+class DemoViewMixin(SuccessMessageMixin, metaclass=MediaDefiningClass):
     title = ""
     success_message = "Record successfully created!"
     template_pack = ""
@@ -19,6 +20,7 @@ class DemoViewMixin(SuccessMessageMixin):
         context["title"] = self.title
         context["template_pack"] = self.template_pack
         context["index_url"] = self.index_url
+        context["media"] = self.media
         return context
 
     def get_docstring(self):

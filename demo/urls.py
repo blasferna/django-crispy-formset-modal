@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.i18n import JavaScriptCatalog
 
+from demo.autocomplete import UserAutocomplete
 from demo.views import index
 
 app_name = "demo"
@@ -17,8 +18,10 @@ test_patterns = (
     app_name,
 )
 
+
 urlpatterns = [
     path("", include(test_patterns, namespace=app_name)),
+    path("autocomplete/users/", UserAutocomplete.as_view(), name="user-autocomplete"),
     path("jsi18n", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     path("admin/", admin.site.urls),
 ]

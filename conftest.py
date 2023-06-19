@@ -11,6 +11,7 @@ TEMPLATES_DIR = os.path.join(DEMO_DIR, "templates")
 
 def pytest_configure(debug=False):
     base_settings = dict(
+        BASE_DIR=BASE_DIR,
         CSRF_TRUSTED_ORIGINS=["https://*.fly.dev", "https://*.127.0.0.1"],
         SECRET_KEY="rprowrjp43u2904u290499;,*jk4l",
         DEBUG=debug,
@@ -37,6 +38,8 @@ def pytest_configure(debug=False):
             "crispy_tailwind",
             "crispy_bulma",
             "crispy_formset_modal",
+            "dal",
+            "dal_select2",
             "demo",
         ],
         ROOT_URLCONF="demo.urls",

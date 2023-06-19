@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from extra_views import CreateWithInlinesView
 
-from demo.bootstrap4.forms import InvoiceForm, InvoiceWithPaymentTermsForm
-from demo.inlines import InvoiceItemInline, PaymentTermInline
+from demo.bootstrap4.forms import InvoiceForm, InvoiceWithPaymentTermsForm, ProjectForm
+from demo.inlines import InvoiceItemInline, PaymentTermInline, TaskInline
 from demo.mixins import DemoViewMixin
-from demo.models import Invoice
+from demo.models import Invoice, Project
 
 
 def index(request):
@@ -17,6 +17,10 @@ def index(request):
         {
             "url_name": "demo:b4-invoice-with-payment-terms-example",
             "title": "Invoice with Items and Payment Terms Example",
+        },
+        {
+            "url_name": "demo:b4-project-management-example",
+            "title": "Project management example",
         },
     ]
     return render(
@@ -161,3 +165,80 @@ class CreateInvoiceWithPaymentTermsDemoView(DemoViewMixin, CreateWithInlinesView
     template_pack = "bootstrap4"
     index_url = reverse_lazy("demo:b4-index")
     success_url = reverse_lazy("demo:b4-invoice-with-payment-terms-example")
+
+
+class CreateProjectDemoView(DemoViewMixin, CreateWithInlinesView):
+    """
+    ## Project management Example
+    This demo showcases how to manage a Project with multiple associated Tasks
+    using Django Crispy Formset Modal. A Project can have multiple Tasks, each
+    assigned to a different user.
+
+    The demo app includes some sample users that can be assigned to tasks. This
+    demonstrates the autocomplete functionality of Django Autocomplete Light.
+
+    ```python
+    class TaskForm(forms.ModelForm):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.helper = ModalEditFormHelper()
+            self.helper.layout = ModalEditLayout(
+                "title",
+                "assigned_to",
+            )
+
+        class Meta:
+            model = Task
+            fields = "__all__"
+            widgets = {
+                "assigned_to": autocomplete.ModelSelect2(
+                    url="user-autocomplete"
+                )
+            }
+    ```
+
+    ```python
+    class ProjectForm(forms.ModelForm):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.helper = FormHelper()
+            self.helper.layout = Layout(
+                Row(Column("name"), Column("description")),
+                Fieldset(
+                    "Tasks",
+                    ModalEditFormsetLayout(
+                        "TaskInline",
+                        list_display=["title", "assigned_to"],
+                    ),
+                ),
+                Submit("submit", "Save", css_class="btn btn-primary"),
+            )
+
+        class Meta:
+            model = Project
+            fields = "__all__"
+            widgets = {"date": DateInput}
+    ```
+    """
+
+    class Media:
+        js = [
+            "admin/js/vendor/select2/select2.full.js",
+            "autocomplete_light/autocomplete_light.min.js",
+            "autocomplete_light/select2.min.js",
+        ]
+        css = {
+            "screen": [
+                "admin/css/vendor/select2/select2.min.css",
+                "admin/css/autocomplete.css",
+                "autocomplete_light/select2.css",
+            ]
+        }
+
+    title = "Project management Example"
+    model = Project
+    inlines = [TaskInline]
+    form_class = ProjectForm
+    template_pack = "bootstrap4"
+    index_url = reverse_lazy("demo:b4-index")
+    success_url = reverse_lazy("demo:b4-project-management-example")

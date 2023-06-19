@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -24,3 +25,14 @@ class PaymentTerm(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
     due_date = models.DateField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+
+
+class Task(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)

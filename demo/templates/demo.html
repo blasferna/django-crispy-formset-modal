@@ -1,7 +1,12 @@
 {% extends "base.html" %}
+
 {% load crispy_forms_tags %}
 
 {% block title %} {{title}} {% endblock %}
+
+{% block styles %}
+
+{% endblock  %}
 
 {% block breadcrumb %}
 <nav>
@@ -46,4 +51,8 @@
         {% crispy form form.helper "bulma" %}
     {% endif %}
     </section>
+{% endblock %}
+
+{% block extrafoot %}
+    {{ media }}
 {% endblock %}

@@ -3,7 +3,7 @@ from crispy_forms.layout import Column, Fieldset, Layout, Row, Submit
 from django import forms
 
 from crispy_formset_modal.layout import ModalEditFormsetLayout
-from demo.models import Invoice
+from demo.models import Invoice, Project
 from demo.widgets import DateInput
 
 
@@ -56,5 +56,28 @@ class InvoiceWithPaymentTermsForm(forms.ModelForm):
 
     class Meta:
         model = Invoice
+        fields = "__all__"
+        widgets = {"date": DateInput}
+
+
+class ProjectForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            "name",
+            "description",
+            Fieldset(
+                "Tasks",
+                ModalEditFormsetLayout(
+                    "TaskInline",
+                    list_display=["title", "assigned_to"],
+                ),
+            ),
+            Submit("submit", "Save", css_class="btn btn-primary float-right"),
+        )
+
+    class Meta:
+        model = Project
         fields = "__all__"
         widgets = {"date": DateInput}

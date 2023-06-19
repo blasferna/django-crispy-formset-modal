@@ -372,6 +372,7 @@ class FormsetModal {
       selCheckbox.classList.add("select-row");
       tdSel.appendChild(selCheckbox);
       tdSel.classList.add(...that._getClasses("td"));
+      tdSel.classList.add(...that._getClasses("alignMiddle"));
       selCheckbox.addEventListener("change", function (e) {
         that._checker(tr, tdSel, row.modalForm.targetEl, e.target);
       });
@@ -381,6 +382,7 @@ class FormsetModal {
       tdNumber.classList.add(...that._getClasses("td"));
       tdNumber.classList.add(...that._getClasses("textRight"));
       tdNumber.classList.add(...that._getClasses("pointer"));
+      tdNumber.classList.add(...that._getClasses("alignMiddle"));
       tdNumber.innerText = rownum;
       tdNumber.addEventListener("click", function () {
         row.modalForm.open();
@@ -410,6 +412,11 @@ class FormsetModal {
             } else {
               $inputOriginal.val($inputTable.val());
             }
+            let event = new Event(eventType, {
+              bubbles: true,
+            })
+            $inputOriginal[0].dispatchEvent(event);
+            that._refreshTableFieldValues($inputTable);
           });
 
           $inputTable.appendTo($(td));
@@ -482,6 +489,24 @@ class FormsetModal {
     }
 
     this._checkSelectAllState();
+  }
+  _refreshTableFieldValues($sourceInputTable){
+    let $tr = $sourceInputTable.closest("tr");
+    let $cols = $tr.find("td[data-source]");
+    $cols.each(function(el){
+      let $col = $(this);
+      let inputOriginalSelector = `#${$col.attr("data-source")}`;
+      let inputTableSelector = `${inputOriginalSelector}-table`;
+      let $inputOriginal = $(inputOriginalSelector);
+      let $inputTable = $(inputTableSelector);
+      if ($sourceInputTable[0] !== $inputTable[0]) {
+        if ($inputOriginal.is('input[type="checkbox"], input[type="radio"]')) {
+          $inputTable.prop("checked", $inputOriginal.prop("checked"));
+        } else {
+          $inputTable.val($inputOriginal.val());
+        }
+      }
+    });
   }
 }
 

@@ -3,7 +3,8 @@ from django.urls import reverse_lazy
 from extra_views import CreateWithInlinesView
 
 from demo.bootstrap4.forms import InvoiceForm, InvoiceWithPaymentTermsForm, ProjectForm
-from demo.inlines import InvoiceItemInline, PaymentTermInline, TaskInline
+from demo.bootstrap4.inlines import TaskInline
+from demo.inlines import InvoiceItemInline, PaymentTermInline
 from demo.mixins import DemoViewMixin
 from demo.models import Invoice, Project
 
@@ -230,8 +231,7 @@ class CreateProjectDemoView(DemoViewMixin, CreateWithInlinesView):
         css = {
             "screen": [
                 "admin/css/vendor/select2/select2.min.css",
-                "admin/css/autocomplete.css",
-                "autocomplete_light/select2.css",
+                "select2-bootstrap4.min.css"
             ]
         }
 

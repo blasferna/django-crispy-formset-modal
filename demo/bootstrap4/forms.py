@@ -1,9 +1,11 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Column, Fieldset, Layout, Row, Submit
+from dal import autocomplete
 from django import forms
 
-from crispy_formset_modal.layout import ModalEditFormsetLayout
-from demo.models import Invoice, Project
+from crispy_formset_modal.helper import ModalEditFormHelper
+from crispy_formset_modal.layout import ModalEditFormsetLayout, ModalEditLayout
+from demo.models import Invoice, Project, Task
 from demo.widgets import DateInput
 
 
@@ -81,3 +83,23 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = "__all__"
         widgets = {"date": DateInput}
+
+
+class TaskForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = ModalEditFormHelper()
+        self.helper.layout = ModalEditLayout(
+            "title",
+            "assigned_to",
+        )
+
+    class Meta:
+        model = Task
+        fields = "__all__"
+        widgets = {
+            "assigned_to": autocomplete.ModelSelect2(
+                url="user-autocomplete",
+                attrs={"data-theme": "bootstrap4", "style": "width: 100%"},
+            )
+        }

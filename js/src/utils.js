@@ -29,13 +29,17 @@ export function getTextValue(el) {
   let type = el.tagName.toLowerCase();
   let textValue = "";
   if (type === "select") {
-    let tempDiv = document.createElement("div");
-    tempDiv.innerHTML = el.options[el.selectedIndex].innerText;
-    textValue = tempDiv.innerText
-      .split("\n")
-      .map((item) => item.trim())
-      .join(" ")
-      .trim();
+    try {
+      let tempDiv = document.createElement("div");
+      tempDiv.innerHTML = el.options[el.selectedIndex].innerText;
+      textValue = tempDiv.innerText
+        .split("\n")
+        .map((item) => item.trim())
+        .join(" ")
+        .trim();
+    } catch (error) {
+      textValue = "";
+    }
   } else {
     if (has(el, "inputmask")) {
       textValue = el.inputmask.undoValue;

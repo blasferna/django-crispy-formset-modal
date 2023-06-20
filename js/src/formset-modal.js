@@ -395,9 +395,7 @@ class FormsetModal {
 
         if (that.editOnTable) {
           let $inputOriginal = $(`#${row[field].sourceId}`);
-          let $inputTable = $inputOriginal.clone();
-          $inputTable.attr("id", row[field].sourceId + "-table");
-          $inputTable.removeAttr("name");
+          let $inputTable = that._clone($inputOriginal);
 
           let eventType = "input";
           if ($inputOriginal.is("select")) {
@@ -410,11 +408,20 @@ class FormsetModal {
             ) {
               $inputOriginal.prop("checked", $inputTable.prop("checked"));
             } else {
-              $inputOriginal.val($inputTable.val());
+              if ($inputOriginal.attr("data-autocomplete-light-function")) {
+                $inputOriginal.select2("trigger", "select", {
+                  data: {
+                    id: $inputTable.val(),
+                    text: $inputTable.select2("data")[0].text,
+                  },
+                });
+              } else {
+                $inputOriginal.val($inputTable.val());
+              }
             }
             let event = new Event(eventType, {
               bubbles: true,
-            })
+            });
             $inputOriginal[0].dispatchEvent(event);
             that._refreshTableFieldValues($inputTable);
           });
@@ -490,10 +497,10 @@ class FormsetModal {
 
     this._checkSelectAllState();
   }
-  _refreshTableFieldValues($sourceInputTable){
+  _refreshTableFieldValues($sourceInputTable) {
     let $tr = $sourceInputTable.closest("tr");
     let $cols = $tr.find("td[data-source]");
-    $cols.each(function(el){
+    $cols.each(function (el) {
       let $col = $(this);
       let inputOriginalSelector = `#${$col.attr("data-source")}`;
       let inputTableSelector = `${inputOriginalSelector}-table`;
@@ -507,6 +514,47 @@ class FormsetModal {
         }
       }
     });
+  }
+  _cloneFormTemplateField($inputOriginal) {
+    let id = $inputOriginal.attr("id");
+    let idNumber = id.match(/-\d+-/)[0].replace(/-/g, "");
+    let emptyForm = $("script[data-formset-empty-form]").html();
+    let templateId = id.replace(/-\d+-/, "-__prefix__-");
+    let $emptyForm = $(emptyForm);
+    let $templateInput = $emptyForm.find("#" + templateId);
+
+    if ($templateInput.length) {
+      let newInput = $templateInput.clone();
+      newInput.attr(
+        "id",
+        newInput.attr("id").replace(new RegExp("__prefix__", "g"), idNumber) +
+          "-table"
+      );
+      newInput.removeAttr("name");
+      return newInput[0].outerHTML;
+    }
+
+    return null;
+  }
+  _clone($inputOriginal) {
+    if ($inputOriginal.attr("data-autocomplete-light-function")) {
+      let $newInput = $(this._cloneFormTemplateField($inputOriginal));
+      if ($inputOriginal.attr("data-autocomplete-light-function")) {
+        $(document).on("dal-element-initialized", function (e) {
+          if (e.detail.element.id === $($newInput).attr("id")) {
+            $newInput.select2("trigger", "select", {
+              data: {
+                id: $inputOriginal.val(),
+                text: $inputOriginal.select2("data")[0].text,
+              },
+            });
+          }
+        });
+      }
+      return $newInput;
+    } else {
+      return $inputOriginal.clone();
+    }
   }
 }
 

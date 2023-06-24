@@ -374,7 +374,7 @@ class FormsetModal {
           td["title"] = hasError.text;
         }
         if (fields[field].type === "bool") {
-          checked = row[field].value === "on" ? "checked" : "";
+          let checked = row[field].value === "on" ? "checked" : "";
           td.innerHTML = `<input type="checkbox" class="${that
             ._getClasses("checkbox")
             .join(" ")}" ${checked} disabled></input>`;

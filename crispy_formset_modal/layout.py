@@ -37,7 +37,7 @@ class ModalEditFormsetLayout(LayoutObject):
         sum_columns=[],
         modal_size=ModalSize.MD,
         modal_placement=ModalPlacement.CENTER,
-        edit_on_table=True,
+        edit_on_table=False,
     ):
         self.formset_name = formset_name
         self.list_display = list_display

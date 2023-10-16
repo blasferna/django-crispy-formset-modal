@@ -163,7 +163,10 @@ class FormsetModal {
           filteredRows[filteredRows.length - 1].querySelector(
             "td[data-source]"
           );
-        firstColumn.firstChild.focus();
+        // This is a hack to set the focus. It's ugly but it works.
+        setTimeout(() => {
+          firstColumn.firstChild.focus();
+        }, 10);
       }
     }
     if (window.hasOwnProperty("calculatedFields")) {

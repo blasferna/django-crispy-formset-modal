@@ -209,6 +209,7 @@ class CreateProjectDemoView(DemoViewMixin, CreateWithInlinesView):
                     "Tasks",
                     ModalEditFormsetLayout(
                         "TaskInline",
+                        edit_on_table=True,
                         list_display=["title", "assigned_to"],
                     ),
                 ),

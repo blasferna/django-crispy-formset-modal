@@ -3,6 +3,7 @@ from django.urls import path
 from demo.bootstrap5.views import (
     CreateInvoiceDemoView,
     CreateInvoiceWithPaymentTermsDemoView,
+    CreateProjectDemoView,
     index,
 )
 
@@ -17,5 +18,10 @@ urlpatterns = [
         "invoice-with-payment-terms-example/",
         CreateInvoiceWithPaymentTermsDemoView.as_view(),
         name="b5-invoice-with-payment-terms-example",
+    ),
+    path(
+        "project-management-example/",
+        CreateProjectDemoView.as_view(),
+        name="b5-project-management-example",
     ),
 ]

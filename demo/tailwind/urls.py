@@ -3,6 +3,7 @@ from django.urls import path
 from demo.tailwind.views import (
     CreateInvoiceDemoView,
     CreateInvoiceWithPaymentTermsDemoView,
+    CreateProjectDemoView,
     index,
 )
 
@@ -17,5 +18,10 @@ urlpatterns = [
         "invoice-with-payment-terms-example/",
         CreateInvoiceWithPaymentTermsDemoView.as_view(),
         name="tailwind-invoice-with-payment-terms-example",
+    ),
+    path(
+        "project-management-example/",
+        CreateProjectDemoView.as_view(),
+        name="tailwind-project-management-example",
     ),
 ]

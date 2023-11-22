@@ -303,7 +303,7 @@ class FormsetModal {
       if (!modalForm.isDeleted()) {
         let row = {};
         modalForm.targetEl
-          .querySelectorAll("input, select")
+          .querySelectorAll("input, select, textarea")
           .forEach(function (el) {
             let match = el.name.match(
               /(?<form>\w+)-(?<number>\w+)-(?<name>\w+)/

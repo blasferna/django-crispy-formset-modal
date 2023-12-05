@@ -4,7 +4,6 @@ import {
   executeAllCalculatedFields,
   getNumberValue,
   getTextValue,
-  gettext,
   hookCalculatedFields,
   removeChildren,
   templatePacks,
@@ -17,9 +16,6 @@ const variant = {
   modal: "modal",
 };
 
-const formsetOptions = {
-  editText: gettext("Edit"),
-};
 
 class FormsetModal {
   constructor(elementId) {
@@ -27,9 +23,6 @@ class FormsetModal {
     this.targetEl = document.getElementById(this._id);
     this.variant = variant.tabular;
     this.$formset = null;
-    this._options = {
-      ...formsetOptions,
-    };
     this._modalForms = [];
     this._deleteBt = null;
     this._table = null;
@@ -69,9 +62,6 @@ class FormsetModal {
   }
   _getClasses(name) {
     return templatePacks[this.templatePack].classes[name].split(" ");
-  }
-  _getPencilIcon(){
-    return templatePacks[this.templatePack].pencilIcon;
   }
   _getEditButton(modalId) {
     const templateEl = this.targetEl.querySelector("template");

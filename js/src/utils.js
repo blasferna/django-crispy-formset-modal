@@ -1,5 +1,3 @@
-import { bootstrapPencilIcon, tailwindPencilIcon } from "./icons";
-
 let gettext = window.gettext;
 const _has = Object.prototype.hasOwnProperty;
 /**
@@ -169,7 +167,6 @@ const bootstrap4Classes = {
   textCenter: "text-center",
   alignMiddle: "align-middle",
   pointer: "cfm-cursor-pointer",
-  editBtn: "btn-open-row btn btn-sm btn-primary",
   checkbox: "checkbox",
   td: "cfm-td",
   tr: "cfm-tr",
@@ -200,8 +197,6 @@ const tailwindClasses = {
   textCenter: "text-center",
   alignMiddle: "align-middle",
   pointer: "cursor-pointer",
-  editBtn:
-    "btn-open-row mx-auto p-1 border border-transparent rounded-full shadow-sm text-gray-500 bg-gray-100 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500",
   checkbox:
     "w-4 rounded border-gray-300 focus:ring-indigo-500 text-indigo-600 h-4",
   td: "whitespace-nowrap px-3 py-3 text-sm text-gray-500",
@@ -230,7 +225,6 @@ const bulmaClasses = {
   textCenter: "has-text-center",
   alignMiddle: "is-vcentered",
   pointer: "cfm-cursor-pointer",
-  editBtn: "btn-open-row button is-primary is-small",
   checkbox: "checkbox",
   td: "cfm-td",
   tr: "cfm-tr",
@@ -274,22 +268,18 @@ const templatePacks = {
   bootstrap4: {
     classes: bootstrap4Classes,
     sizes: bootstrap4SizeClasses,
-    pencilIcon: bootstrapPencilIcon,
   },
   bootstrap5: {
     classes: bootstrap5Classes,
     sizes: bootstrap5SizeClasses,
-    pencilIcon: bootstrapPencilIcon,
   },
   tailwind: {
     classes: tailwindClasses,
     sizes: tailwindSizeClasses,
-    pencilIcon: tailwindPencilIcon,
   },
   bulma: {
     classes: bulmaClasses,
     sizes: bulmaSizeClasses,
-    pencilIcon: bootstrapPencilIcon,
   },
 };
 

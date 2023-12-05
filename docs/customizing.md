@@ -68,8 +68,9 @@ Django Crispy Formset Modal uses several templates to render formsets and modals
 * `form.html`: This template is used to render the form within the modal.
 * `modal.html`: This template is used to render the modal dialog for adding/editing formset instances.
 * `table.html`: This template is used to render the HTML table that displays the formset data.
+* `edit_button.html`: This template is used to render the record edit button in the formset table.
 
-To override these templates, create a directory named `crispy_formset_modal` and a subdirectory named as per the template pack you're using (for instance, `bootstrap4`) in your project's templates directory. Then create your custom versions of `form.html`, `modal.html`, and/or `table.html` in this directory.
+To override these templates, create a directory named `crispy_formset_modal` and a subdirectory named as per the template pack you're using (for instance, `bootstrap4`) in your project's templates directory. Then create your custom versions of `form.html`, `modal.html`, `edit_button.html`, and/or `table.html` in this directory.
 
 With these customization options, you can modify Django Crispy Formset Modal to better suit the needs of your project. In the next section, we'll discuss how to troubleshoot common issues and where to seek further assistance.
 

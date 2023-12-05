@@ -1,6 +1,5 @@
-from crispy_forms.layout import Div, Field
+from crispy_forms.layout import Div, Field, LayoutObject
 from crispy_forms.layout import Layout as CrispyLayout
-from crispy_forms.layout import LayoutObject
 from django import forms
 from django.conf import settings
 from django.forms.formsets import DELETION_FIELD_NAME
@@ -9,12 +8,16 @@ from django.template.loader import render_to_string
 
 from crispy_formset_modal import ModalPlacement, ModalSize
 
+from .configs import DEFAULT_CONFIG
+
 HIDDEN_CLASSES = {
     "tailwind": "hidden",
     "bootstrap4": "d-none",
     "bootstrap5": "d-none",
     "bulma": "is-hidden",
 }
+
+USER_CONFIG = getattr(settings, "CRISPY_FORMSET_MODAL", DEFAULT_CONFIG)
 
 
 class ModalEditLayout(CrispyLayout):
@@ -126,6 +129,9 @@ class ModalEditFormsetLayout(LayoutObject):
                 "template_pack": template_pack,
                 "modal_size": self.modal_size,
                 "modal_placement": self.modal_placement,
+                "edit_button_template_name": USER_CONFIG["edit_button_template_name"][
+                    template_pack
+                ],
             }
         )
 

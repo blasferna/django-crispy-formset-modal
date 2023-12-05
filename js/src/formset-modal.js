@@ -4,7 +4,6 @@ import {
   executeAllCalculatedFields,
   getNumberValue,
   getTextValue,
-  gettext,
   hookCalculatedFields,
   removeChildren,
   templatePacks,
@@ -17,19 +16,12 @@ const variant = {
   modal: "modal",
 };
 
-const formsetOptions = {
-  editText: gettext("Edit"),
-};
-
 class FormsetModal {
   constructor(elementId) {
     this._id = elementId;
     this.targetEl = document.getElementById(this._id);
     this.variant = variant.tabular;
     this.$formset = null;
-    this._options = {
-      ...formsetOptions,
-    };
     this._modalForms = [];
     this._deleteBt = null;
     this._table = null;
@@ -70,8 +62,17 @@ class FormsetModal {
   _getClasses(name) {
     return templatePacks[this.templatePack].classes[name].split(" ");
   }
-  _getPencilIcon(){
-    return templatePacks[this.templatePack].pencilIcon;
+  _getEditButton(modalId) {
+    const templateEl = this.targetEl.querySelector("template");
+    const template = templateEl.content.cloneNode(true);
+    const editButton = template.querySelector("button");
+
+    if (!editButton.classList.contains("btn-open-row")) {
+      editButton.classList.add("btn-open-row");
+    }
+
+    editButton.setAttribute("data-formset-modal-toggle", modalId);
+    return editButton;
   }
   _getModalSize() {
     return this.targetEl.getAttribute("data-modal-size");
@@ -265,7 +266,9 @@ class FormsetModal {
   }
   _checker(tr, td, formsetFormEl, checkbox) {
     // remove previous divSel if exists.
-    let prevDivSel = td.querySelector(".cfm-selection-border, .selection-border");
+    let prevDivSel = td.querySelector(
+      ".cfm-selection-border, .selection-border"
+    );
     if (prevDivSel) {
       prevDivSel.remove();
     }
@@ -349,7 +352,7 @@ class FormsetModal {
       selCheckbox.classList.add(...that._getClasses("checkbox"));
       selCheckbox.classList.add("select-row");
       tdSel.appendChild(selCheckbox);
-      tdSel.classList.add(...that._getClasses("td"))
+      tdSel.classList.add(...that._getClasses("td"));
       selCheckbox.addEventListener("change", function (e) {
         that._checker(tr, tdSel, row.modalForm.targetEl, e.target);
       });
@@ -400,13 +403,7 @@ class FormsetModal {
       tdEdit.classList.add(...that._getClasses("textCenter"));
       tdEdit.classList.add(...that._getClasses("p0"));
       tdEdit.classList.add(...that._getClasses("alignMiddle"));
-      tdEdit.innerHTML = `
-                <button type="button"
-                        title="${that._options.editText}" 
-                        class="${that._getClasses("editBtn").join(" ")}"
-                        data-formset-modal-toggle="${row.modalForm.modalId}">
-                        ${that._getPencilIcon()}
-                </button>`;
+      tdEdit.appendChild(that._getEditButton(row.modalForm.modalId));
       let button = tdEdit.querySelector(".btn-open-row");
 
       button.addEventListener("click", function (e) {

@@ -10,6 +10,9 @@
      data-modal-placement="{{ modal_placement }}"
 >
     {{ formset.management_form }}
+    <template>
+    {% include edit_button_template_name %}
+    </template>
     <div data-formset-body class="formset-row">
         {% for form in formset.forms %}
         {% uuid4 dialog_id %}

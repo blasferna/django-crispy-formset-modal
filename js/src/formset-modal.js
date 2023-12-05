@@ -73,6 +73,18 @@ class FormsetModal {
   _getPencilIcon(){
     return templatePacks[this.templatePack].pencilIcon;
   }
+  _getEditButton(modalId) {
+    const templateEl = this.targetEl.querySelector("template");
+    const template = templateEl.content.cloneNode(true);
+    const editButton = template.querySelector("button");
+
+    if (!editButton.classList.contains("btn-open-row")) {
+      editButton.classList.add("btn-open-row");
+    }
+
+    editButton.setAttribute("data-formset-modal-toggle", modalId);
+    return editButton;
+  }
   _getModalSize() {
     return this.targetEl.getAttribute("data-modal-size");
   }
@@ -400,13 +412,7 @@ class FormsetModal {
       tdEdit.classList.add(...that._getClasses("textCenter"));
       tdEdit.classList.add(...that._getClasses("p0"));
       tdEdit.classList.add(...that._getClasses("alignMiddle"));
-      tdEdit.innerHTML = `
-                <button type="button"
-                        title="${that._options.editText}" 
-                        class="${that._getClasses("editBtn").join(" ")}"
-                        data-formset-modal-toggle="${row.modalForm.modalId}">
-                        ${that._getPencilIcon()}
-                </button>`;
+      tdEdit.appendChild(that._getEditButton(row.modalForm.modalId));
       let button = tdEdit.querySelector(".btn-open-row");
 
       button.addEventListener("click", function (e) {

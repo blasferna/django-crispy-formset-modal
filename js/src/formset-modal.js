@@ -16,7 +16,6 @@ const variant = {
   modal: "modal",
 };
 
-
 class FormsetModal {
   constructor(elementId) {
     this._id = elementId;
@@ -267,7 +266,9 @@ class FormsetModal {
   }
   _checker(tr, td, formsetFormEl, checkbox) {
     // remove previous divSel if exists.
-    let prevDivSel = td.querySelector(".cfm-selection-border, .selection-border");
+    let prevDivSel = td.querySelector(
+      ".cfm-selection-border, .selection-border"
+    );
     if (prevDivSel) {
       prevDivSel.remove();
     }
@@ -351,7 +352,7 @@ class FormsetModal {
       selCheckbox.classList.add(...that._getClasses("checkbox"));
       selCheckbox.classList.add("select-row");
       tdSel.appendChild(selCheckbox);
-      tdSel.classList.add(...that._getClasses("td"))
+      tdSel.classList.add(...that._getClasses("td"));
       selCheckbox.addEventListener("change", function (e) {
         that._checker(tr, tdSel, row.modalForm.targetEl, e.target);
       });

@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2] - 2024-03-02
+
+### Added
+* Added functionality to customize the appearance of the edit button by overriding the template by @blasferna in https://github.com/blasferna/django-crispy-formset-modal/pull/12
+
+### Fixed
+* Fix: Declare 'checked' Variable to Resolve ReferenceError by @blasferna in https://github.com/blasferna/django-crispy-formset-modal/pull/2
+* Add missing 'textarea' type by @blasferna in https://github.com/blasferna/django-crispy-formset-modal/pull/10
+
+
 ## [0.1] - 2023-05-19
 
 ### Added

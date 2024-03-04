@@ -46,6 +46,7 @@ class ModalEditFormsetLayout(LayoutObject):
         self.sum_columns = sum_columns
         self.modal_size = modal_size
         self.modal_placement = modal_placement
+        self.fields = []
 
     def get_html_name(self, empty_form, field):
         return empty_form[field].html_name.split("__prefix__")[1][1:]

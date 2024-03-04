@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3] - 2024-03-04
+
+### Fixed
+* Avoid 'ModalEditFormsetLayout' object has no attribute 'fields' by @blasferna in https://github.com/blasferna/django-crispy-formset-modal/pull/14
+
 ## [0.2] - 2024-03-02
 
 ### Added

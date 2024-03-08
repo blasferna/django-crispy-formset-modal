@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.4] - 2024-03-08
+
+### Added
+* Created `window.crispyFormsetModal.refresh` to recreate all formsets. 
+
 ## [0.3] - 2024-03-04
 
 ### Fixed

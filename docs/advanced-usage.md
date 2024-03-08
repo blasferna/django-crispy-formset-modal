@@ -108,3 +108,17 @@ Django Crispy Formset Modal supports the mass deletion of records from the HTML 
 
 
 With these advanced features, Django Crispy Formset Modal offers flexible and powerful solutions for managing complex formsets in your Django projects. In the next section, we will cover customization options and how to adapt the package to fit your specific needs.
+
+## Recreate all formsets
+
+Useful when you are using `htmx` and you want to recreate all formsets after a swap.
+
+```javascript
+if (typeof window.crispyFormsetModal !== "undefined") {
+    window.crispyFormsetModal.refresh();
+}
+```
+
+!!! warning
+
+    The `refresh` method will recreate all formsets in the page, because of that, it is not recommended to use it when only you need to recreate a specific formset. 

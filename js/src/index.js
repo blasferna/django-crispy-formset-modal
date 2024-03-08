@@ -10,6 +10,8 @@ import {
   injectStyles,
 } from "./utils";
 
+window.crispyFomsetModal = {};
+
 function configureFormsets() {
   let formsets = document.querySelectorAll(".formset");
   formsets.forEach(function (formsetEl) {
@@ -86,6 +88,11 @@ $.fn[pluginName] = function () {
   }
 };
 
+window.crispyFomsetModal.refresh = function () {
+  configureFormsets();
+  configureModals();
+  executeAllCalculatedFields();
+};
 
 ready(function () {
   injectStyles();

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5] 2024-03-08
+
+* Typo fix in `window.crispyFormsetModal` object declaration.
+
+
 ## [0.4] - 2024-03-08
 
 ### Added

@@ -122,3 +122,34 @@ if (typeof window.crispyFormsetModal !== "undefined") {
 !!! warning
 
     The `refresh` method will recreate all formsets in the page, because of that, it is not recommended to use it when only you need to recreate a specific formset. 
+
+
+## Events
+
+Django Crispy Formset Modal provides two events that you can utilize to perform additional actions when forms are added or removed from the formset. These events are:
+
+- `onFormAdded`: This event is triggered whenever a new form is added to the formset.
+
+- `onFormDeleted`: This event is triggered whenever an existing form is removed from the formset.
+
+You can leverage these events to execute custom JavaScript code in response to forms being added or removed. For instance, you could use these events to update the total amount on an invoice form whenever a new line item is added or an existing one is deleted.
+
+Here's an example of how you can attach event listeners to these events:
+
+```javascript
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof window.crispyFormsetModal !== "undefined") {
+    window.crispyFormsetModal.onFormAdded = function (event) {
+      // Your custom code to handle form addition
+      // For example, you could update the total amount here
+    };
+
+    window.crispyFormsetModal.onFormDeleted = function (event) {
+      // Your custom code to handle form removal
+      // For example, you could update the total amount here
+    };
+  }
+});
+```
+
+In the example above, we first check if `window.crispyFormsetModal` exists, as it may not be available in certain scenarios. If it exists, we assign functions to the `onFormAdded` and `onFormDeleted` events.

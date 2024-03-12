@@ -94,6 +94,9 @@ window.crispyFormsetModal.refresh = function () {
   executeAllCalculatedFields();
 };
 
+window.crispyFormsetModal.onFormAdded = function () {};
+window.crispyFormsetModal.onFormDeleted = function () {};
+
 ready(function () {
   injectStyles();
   configureModals();

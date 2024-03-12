@@ -93,9 +93,11 @@ class FormsetModal {
     let that = this;
     this.$formset.on("formAdded", function (e) {
       that._onFormsetAdded(e);
+      window.crispyFormsetModal.onFormAdded(e);
     });
     this.$formset.on("formDeleted", function (e) {
       that._onFormsetDeleted(e);
+      window.crispyFormsetModal.onFormDeleted(e);
     });
   }
   /**

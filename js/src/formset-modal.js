@@ -320,6 +320,7 @@ class FormsetModal {
                 row[name] = {
                   value: content,
                   sourceId: el.getAttribute("id"),
+                  hasError: modalForm.hasFieldError(el.getAttribute("id")),
                 };
                 row["modalForm"] = modalForm;
               }
@@ -344,8 +345,11 @@ class FormsetModal {
       tr.classList.add(...that._getClasses("tr"));
       tr.setAttribute("data-rownum", rownum);
       // Highlight row if there are non field errors
-      if (row.modalForm.hasNonFieldError()) {
-        tr["style"] = "border: 1px solid #ff4545";
+      if (
+        row.modalForm.hasNonFieldError() ||
+        row.modalForm.hasErrorsNotIncluded(row.modalForm.errors(), row)
+      ) {
+        tr["style"] = "border: 2px solid #ff4545";
       }
       // Selection column
       let tdSel = document.createElement("td");
@@ -372,10 +376,10 @@ class FormsetModal {
       // Mirror columns
       fieldNames.forEach(function (field) {
         let td = document.createElement("td");
-        let hasError = row.modalForm.hasFieldError(row[field].sourceId);
+        let hasError = row[field].hasError;
         td.classList.add(...that._getClasses("td"));
         if (hasError.error) {
-          td["style"] = "border: 1px solid #ff4545";
+          td["style"] = "border: 2px solid #ff4545";
           td["title"] = hasError.text;
         }
         if (fields[field].type === "bool") {

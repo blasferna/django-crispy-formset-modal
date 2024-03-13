@@ -56,6 +56,28 @@ class ModalForm {
   hasNonFieldError() {
     return this.targetEl.querySelector(".non-field-errors") != null;
   }
+  errors() {
+    let errors = {};
+    this.targetEl.querySelectorAll("[id^='error_']").forEach(function (el) {
+      let fieldId = el.id.replace("error_", "");
+      let fieldName = fieldId.replace(/.*?-.*?-(.*)/, "$1");
+      errors[fieldName] = {
+        error: el.innerText,
+        sourceId: fieldId,
+      };
+    });
+    return errors;
+  }
+  hasErrorsNotIncluded(errors, row) {
+    let errorProps = Object.keys(errors);
+    let propsNotIncluded = errorProps.filter(
+      (prop) => !row.hasOwnProperty(prop)
+    );
+    let allHasErrorFalse = Object.values(row).every(
+      (field) => !field.hasError || !field.hasError.error
+    );
+    return propsNotIncluded.length > 0 && allHasErrorFalse;
+  }
   _hiddeDefaultDeleteBt(el) {
     let parentEl = el.parentNode;
     parentEl.classList.add("d-none");

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6] 2024-03-13
+
+### Added 
+* Add event handlers for formset additions and deletions.
+* Improve error highlighting.
+
 ## [0.5] 2024-03-08
 
 * Typo fix in `window.crispyFormsetModal` object declaration.

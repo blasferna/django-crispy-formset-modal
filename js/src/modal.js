@@ -1,4 +1,5 @@
-import { uuidv4, templatePacks } from "./utils";
+import $ from "jquery";
+import { templatePacks, uuidv4 } from "./utils";
 
 const modalDefault = {
   placement: "center",
@@ -18,6 +19,7 @@ class Modal {
       ...options,
     };
     this._isHidden = true;
+    this._bsParent = this._parentEl.closest(".modal");
     this._init();
     this._addEventListeners();
   }
@@ -129,7 +131,8 @@ class Modal {
   _addEventListeners() {
     let that = this;
     this._targetEl.addEventListener("keyup", function (e) {
-      if (e.key === "Escape") {
+      if (e.which === 27) {
+        e.preventDefault();
         that.hide();
       }
     });
@@ -169,6 +172,10 @@ class Modal {
     }
     this._targetEl.offsetWidth;
     this._targetEl.classList.add(...this._getClasses("opacity100"));
+
+    if (this._bsParent) {
+      $(this._bsParent).off("keydown.dismiss.bs.modal");
+    }
   }
   hide() {
     this._targetEl.classList.add(...this._getClasses("hidden"));
@@ -183,6 +190,16 @@ class Modal {
 
     // callback function
     this._options.onHide(this);
+
+    if (this._bsParent) {
+      this._bsParent.focus();
+      $(this._bsParent).on("keydown.dismiss.bs.modal", (e) => {
+        if (e.which === 27) {
+          e.preventDefault();
+          $(this._bsParent).modal("hide");
+        }
+      });
+    }
   }
 }
 

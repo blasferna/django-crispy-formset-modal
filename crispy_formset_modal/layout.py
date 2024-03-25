@@ -127,6 +127,9 @@ class ModalEditFormsetLayout(LayoutObject):
                 "modal_template_name": (
                     f"crispy_formset_modal/{template_pack}/modal.html"
                 ),
+                "empty_state_template_name": (
+                    f"crispy_formset_modal/{template_pack}/empty_state.html"
+                ),
                 "template_pack": template_pack,
                 "modal_size": self.modal_size,
                 "modal_placement": self.modal_placement,

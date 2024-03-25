@@ -52,6 +52,7 @@ class FormsetModal {
       this._configureSelectAllToggler();
       this._refresh();
     }
+    this.targetEl.setAttribute("data-formset-initialized", "true");
   }
   _getVariant() {
     return this.targetEl.getAttribute("data-formset-variant");

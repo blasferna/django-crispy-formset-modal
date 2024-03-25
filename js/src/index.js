@@ -15,7 +15,9 @@ window.crispyFormsetModal = {};
 function configureFormsets() {
   let formsets = document.querySelectorAll(".formset");
   formsets.forEach(function (formsetEl) {
-    new FormsetModal(formsetEl.getAttribute("id"));
+    if (!formsetEl.hasAttribute("data-formset-initialized")) {
+      new FormsetModal(formsetEl.getAttribute("id"));
+    }
   });
 }
 
@@ -88,9 +90,18 @@ $.fn[pluginName] = function () {
   }
 };
 
+window.crispyFormsetModal.init = function () {
+  injectStyles();
+  configureFormsets();
+  configureModals();
+  hookCalculatedFields();
+  executeAllCalculatedFields();
+}
+
 window.crispyFormsetModal.refresh = function () {
   configureFormsets();
   configureModals();
+  hookCalculatedFields();
   executeAllCalculatedFields();
 };
 
@@ -98,9 +109,5 @@ window.crispyFormsetModal.onFormAdded = function () {};
 window.crispyFormsetModal.onFormDeleted = function () {};
 
 ready(function () {
-  injectStyles();
-  configureModals();
-  hookCalculatedFields();
-  configureFormsets();
-  executeAllCalculatedFields();
+  window.crispyFormsetModal.init();
 });

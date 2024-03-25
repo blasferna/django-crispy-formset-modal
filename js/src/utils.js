@@ -98,45 +98,49 @@ export function removeChildren(a) {
 }
 
 export function injectStyles() {
-  const css = `
-    .cfm-selection-border {
-        position: absolute;
-        top: 0px;
-        bottom: 0px;
-        left: 0px;
-        width: 0.150rem;
-        background-color: rgb(220 53 69 / 1);
-    }
-    .cfm-modal-backdrop {
-        position: fixed;
-        inset: 0px;
-        z-index: 100;
-        background-color: rgb(31 41 55 / 1);
-        opacity: 0;
-        transition-property: opacity;
-        transition-duration: 300ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .cfm-opacity-50 {
-        opacity: 0.5;
-    }
-    .cfm-opacity-100 {
-        opacity: 1;
-    }
-    .cfm-tr.selected{
-      background-color: rgba(0, 0, 0, 0.08) !important;
-    }
-    .cfm .modal-body {
-      max-height: calc(100vh - 150px);
-      overflow-x: auto;
-    }
-    .cfm-cursor-pointer {
-      cursor: pointer;
-    }
-    `;
-  const style = document.createElement("style");
-  style.innerHTML = css;
-  document.head.appendChild(style);
+  const styleId = "cfm-styles";
+  if (!document.getElementById(styleId)) {
+    const css = `
+      .cfm-selection-border {
+          position: absolute;
+          top: 0px;
+          bottom: 0px;
+          left: 0px;
+          width: 0.150rem;
+          background-color: rgb(220 53 69 / 1);
+      }
+      .cfm-modal-backdrop {
+          position: fixed;
+          inset: 0px;
+          z-index: 100;
+          background-color: rgb(31 41 55 / 1);
+          opacity: 0;
+          transition-property: opacity;
+          transition-duration: 300ms;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .cfm-opacity-50 {
+          opacity: 0.5;
+      }
+      .cfm-opacity-100 {
+          opacity: 1;
+      }
+      .cfm-tr.selected{
+        background-color: rgba(0, 0, 0, 0.08) !important;
+      }
+      .cfm .modal-body {
+        max-height: calc(100vh - 150px);
+        overflow-x: auto;
+      }
+      .cfm-cursor-pointer {
+        cursor: pointer;
+      }
+      `;
+    const style = document.createElement("style");
+    style.innerHTML = css;
+    style.id = styleId;
+    document.head.appendChild(style);
+  }
 }
 
 export function getModalInstance(id, instances) {

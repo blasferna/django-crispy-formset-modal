@@ -119,11 +119,6 @@ if (typeof window.crispyFormsetModal !== "undefined") {
 }
 ```
 
-!!! warning
-
-    The `refresh` method will recreate all formsets in the page, because of that, it is not recommended to use it when only you need to recreate a specific formset. 
-
-
 ## Events
 
 Django Crispy Formset Modal provides two events that you can utilize to perform additional actions when forms are added or removed from the formset. These events are:

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7] 2024-03-25
+
+### Fixed
+
+* Resolves unexpected closure of nested modals when the parent is a Bootstrap modal.
+* Improve formset initialization.
+
+
 ## [0.6] 2024-03-13
 
 ### Added 

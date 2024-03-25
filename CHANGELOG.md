@@ -1,5 +1,11 @@
 # Changelog
 
+
+## [0.8] 2024-03-25
+
+* Add ability to customize empty state message
+
+
 ## [0.7] 2024-03-25
 
 ### Fixed

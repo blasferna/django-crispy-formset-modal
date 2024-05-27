@@ -112,7 +112,7 @@ export function injectStyles() {
       .cfm-modal-backdrop {
           position: fixed;
           inset: 0px;
-          z-index: 100;
+          z-index: 1050;
           background-color: rgb(31 41 55 / 1);
           opacity: 0;
           transition-property: opacity;
@@ -190,6 +190,7 @@ const bootstrap4Classes = {
 const bootstrap5Classes = {
   ...bootstrap4Classes,
   textRight: "text-end",
+  checkbox: "checkbox form-check-input",
 };
 
 const tailwindClasses = {

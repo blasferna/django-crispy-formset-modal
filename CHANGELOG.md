@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.10] 2024-05-27
+* Fix Pypa issue. 
+
 ## [0.9] 2024-05-27
 
 * Fixed Bootstrap 5 checkbox styling.

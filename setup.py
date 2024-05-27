@@ -5,7 +5,7 @@ setup(
     name="django-crispy-formset-modal",
     packages=["crispy_formset_modal"],
     include_package_data=True,
-    version="0.9",
+    version="0.10",
     description="Django app that provides an easy way to manage and manipulate formsets using modals with Django Crispy Forms.",
     long_description=open("README.md").read(),
 	long_description_content_type="text/markdown",

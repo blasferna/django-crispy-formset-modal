@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9] 2024-05-27
+
+* Fixed Bootstrap 5 checkbox styling.
+* Modal overlay z-index increased.
+
 
 ## [0.8] 2024-03-25
 

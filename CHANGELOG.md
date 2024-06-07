@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.11] 2024-06-07
+* Added new event handlers for modal open and close.
+* Fixed z-index issue with the modal backdrop.
+* Improved selection column style.
+
+
 ## [0.10] 2024-05-27
 * Fix Pypa issue. 
 

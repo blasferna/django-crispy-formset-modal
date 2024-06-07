@@ -127,6 +127,10 @@ Django Crispy Formset Modal provides two events that you can utilize to perform 
 
 - `onFormDeleted`: This event is triggered whenever an existing form is removed from the formset.
 
+- `onModalFormOpened`: This event is triggered whenever the modal form is opened.
+
+- `onModalFormClosed`: This event is triggered whenever the modal form is closed.
+
 You can leverage these events to execute custom JavaScript code in response to forms being added or removed. For instance, you could use these events to update the total amount on an invoice form whenever a new line item is added or an existing one is deleted.
 
 Here's an example of how you can attach event listeners to these events:
@@ -143,8 +147,16 @@ document.addEventListener("DOMContentLoaded", function () {
       // Your custom code to handle form removal
       // For example, you could update the total amount here
     };
+
+    window.crispyFormsetModal.onModalFormOpened = function (modalForm) {
+      // Your custom code to handle modal form opened
+    };
+
+    window.crispyFormsetModal.onModalFormClosed = function (modalForm) {
+      // Your custom code to handle modal form closed
+    };
   }
 });
 ```
 
-In the example above, we first check if `window.crispyFormsetModal` exists, as it may not be available in certain scenarios. If it exists, we assign functions to the `onFormAdded` and `onFormDeleted` events.
+In the example above, we first check if `window.crispyFormsetModal` exists, as it may not be available in certain scenarios. If it exists, we assign functions to the `onFormAdded` and `onFormDeleted` properties to handle the form addition and removal events, respectively. You can replace the comments with your custom logic to update the total amount or perform any other actions you need.

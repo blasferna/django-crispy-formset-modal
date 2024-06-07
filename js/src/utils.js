@@ -135,6 +135,9 @@ export function injectStyles() {
       .cfm-cursor-pointer {
         cursor: pointer;
       }
+      [data-formset-form] .modal {
+        z-index: 1051;
+      }
       `;
     const style = document.createElement("style");
     style.innerHTML = css;

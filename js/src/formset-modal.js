@@ -196,9 +196,11 @@ class FormsetModal {
   }
   _onModalFormOpen(modalForm) {
     this._refresh();
+    window.crispyFormsetModal.onModalFormOpened(modalForm);
   }
   _onModalFormClose(modalForm) {
     this._refresh();
+    window.crispyFormsetModal.onModalFormClosed(modalForm);
   }
   _configureSelectAllToggler() {
     let that = this;
@@ -224,7 +226,7 @@ class FormsetModal {
     deleteBt.addEventListener("click", function (e) {
       let formset = that.targetEl;
       let selectedForms = formset.querySelectorAll(
-        "[data-formset-form-selected]"
+        "[data-formset-form-selected]:not([data-formset-form-deleted])"
       );
       selectedForms.forEach(function (selectedForm) {
         let deleteCheckbox = selectedForm.querySelector(".formset-delete");
@@ -354,6 +356,7 @@ class FormsetModal {
       }
       // Selection column
       let tdSel = document.createElement("td");
+      tdSel.style.textAlign = "center";
       let selCheckbox = document.createElement("input");
       selCheckbox.setAttribute("type", "checkbox");
       selCheckbox.classList.add(...that._getClasses("checkbox"));

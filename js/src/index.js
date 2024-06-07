@@ -107,6 +107,8 @@ window.crispyFormsetModal.refresh = function () {
 
 window.crispyFormsetModal.onFormAdded = function () {};
 window.crispyFormsetModal.onFormDeleted = function () {};
+window.crispyFormsetModal.onModalFormOpened = function () {};
+window.crispyFormsetModal.onModalFormClosed = function () {};
 
 ready(function () {
   window.crispyFormsetModal.init();

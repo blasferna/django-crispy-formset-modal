@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 15:55-0400\n"
+"POT-Creation-Date: 2024-07-08 09:59-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Blas Fernandez blasferna@gmail.com\n"
 "Language: Spanish\n"
@@ -17,11 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: crispy_formset_modal/static/crispy_formset_modal/js/crispy-formset-modal.min.js:33
-#: js/src/modal-form.js:88
+#: js/src/modal-form.js:113
 msgid "Editing row #"
 msgstr "Editando registro #"
 
-#: js/src/formset-modal.js:29
-msgid "Edit"
-msgstr "Editar"
+#~ msgid "Edit"
+#~ msgstr "Editar"

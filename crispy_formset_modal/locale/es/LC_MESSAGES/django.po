@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 15:55-0400\n"
+"POT-Creation-Date: 2024-07-08 09:56-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Blas Fernandez blasferna@gmail.com\n"
 "Language: Spanish\n"
@@ -17,23 +17,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/edit_button.html:4
 #: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/modal.html:7
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/modal.html:7
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/modal.html:6
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/modal.html:7
 msgid "Edit"
 msgstr "Editar"
 
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/table.html:58
+msgid "No data"
+msgstr "No hay datos"
+
 #: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/modal.html:17
-#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:70
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:73
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/modal.html:16
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/table.html:73
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/modal.html:15
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/table.html:73
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/modal.html:18
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/table.html:81
 msgid "Delete"
 msgstr "Eliminar"
 
 #: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/modal.html:18
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/modal.html:17
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/modal.html:16
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/modal.html:19
 msgid "Close"
 msgstr "Cerrar"
 
-#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:50
-msgid "No data"
-msgstr "No hay datos"
-
-#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:69
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:72
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/table.html:72
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/table.html:72
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/table.html:80
 msgid "Add"
 msgstr "Agregar"

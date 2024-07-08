@@ -1,4 +1,6 @@
 # Changelog
+## [0.12] 2024-07-08
+* Translation improvements.
 
 ## [0.11] 2024-06-07
 * Added new event handlers for modal open and close.

@@ -28,7 +28,11 @@ export function getTextValue(el) {
   let textValue = "";
   if (type === "select") {
     let tempDiv = document.createElement("div");
+    if (el.options[el.selectedIndex]) {
     tempDiv.innerHTML = el.options[el.selectedIndex].innerText;
+    } else {
+        tempDiv.innerHTML = "-------";
+    }
     textValue = tempDiv.innerText
       .split("\n")
       .map((item) => item.trim())

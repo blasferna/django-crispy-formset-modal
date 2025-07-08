@@ -64,12 +64,3 @@ include-package-data = true
 [tool.setuptools.packages.find]
 include = ["crispy_formset_modal*"]
 
-[tool.setuptools.package-data]
-crispy_formset_modal = [
-    "*.css",
-    "*.js",
-    "*.html",
-    "*.po",
-    "*.mo",
-]
-

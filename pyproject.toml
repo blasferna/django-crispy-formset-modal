@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=77"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = 'setuptools.build_meta'
 
 [project]
@@ -58,9 +58,18 @@ dev = [
 homepage = "https://blasferna.github.io/django-crispy-formset-modal"
 bugs = "https://github.com/blasferna/django-crispy-formset-modal/issues"
 
-[tool.setuptools.packages]
-find = { include = ["crispy_formset_modal", "*.py", "*.html", "*.css", "*.po", "*.mo", "*.map", "LICENSE", "README.md"] }
+[tool.setuptools]
+include-package-data = true
 
-[tool.uv]
-package = true
+[tool.setuptools.packages.find]
+include = ["crispy_formset_modal*"]
+
+[tool.setuptools.package-data]
+crispy_formset_modal = [
+    "*.css",
+    "*.js",
+    "*.html",
+    "*.po",
+    "*.mo",
+]
 

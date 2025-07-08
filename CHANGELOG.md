@@ -1,4 +1,13 @@
 # Changelog
+
+## [0.13] 2025-07-08
+* Django Autocomplete Light compatibility fix.
+* Use uv to manage dependencies.
+* Update classifiers for Django 5.x and Python.
+* Added support for navigation buttons in modals.
+* Improved documentation with a section on navigation buttons for modal customization.
+
+
 ## [0.12] 2024-07-08
 * Translation improvements.
 

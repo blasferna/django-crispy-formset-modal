@@ -16,30 +16,26 @@ export PRINT_HELP_PYSCRIPT
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-lint/flake8: ## check style with flake8
-	flake8 crispy_formset_modal demo
-lint/black: ## check style with black
-	black --check crispy_formset_modal demo
-lint/isort: ## check imports order
-	isort crispy_formset_modal demo --check --dif 
-
-lint: lint/flake8 lint/black lint/isort ## check style
-
 docs: ## generate Mkdos HTML documentation
-	mkdocs build
+	uv run mkdocs build
 
 servedocs: docs ## compile the docs watching for changes
-	mkdocs serve
+	uv run mkdocs serve
 
 makemessages: ## run django makemessages command
-	python manage.py makemessages --locale=es --ignore=venv --ignore=node_modules -ignore=staticfiles --ignore=site -a -d djangojs 
-	python manage.py makemessages --locale=es --ignore=venv --ignore=site -e html -e py -a
+	uv run manage.py makemessages --locale=es --ignore=venv --ignore=node_modules -ignore=staticfiles --ignore=site -a -d djangojs 
+	uv run manage.py makemessages --locale=es --ignore=venv --ignore=site -e html -e py -a
 
 compilemessages: ## run django compilemessages command
-	python manage.py compilemessages --ignore=venv
+	uv run manage.py compilemessages --ignore=venv
 
 buildtailwind: ## build Tailwindcss
 	npm run build:tailwind
 
 buildstatic: ## build javascript and tailwind code
 	npm run build
+
+requirements: ## Generate requirements.txt from pyproject.toml
+	@echo "Generating requirements.txt..."
+	uv pip compile pyproject.toml -o requirements.txt --group dev
+

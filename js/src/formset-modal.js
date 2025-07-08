@@ -100,6 +100,87 @@ class FormsetModal {
       that._onFormsetDeleted(e);
       window.crispyFormsetModal.onFormDeleted(e);
     });
+    this.targetEl.addEventListener("click", function (e) {
+      if (e.target.closest("[data-formset-previous-button]")) {
+        e.preventDefault();
+        that._navigateToPrevious();
+      }
+      if (e.target.closest("[data-formset-next-button]")) {
+        e.preventDefault();
+        that._navigateToNext();
+      }
+    });
+  }
+  _navigateToPrevious() {
+    let currentModalForm = this._getCurrentOpenModalForm();
+    if (currentModalForm) {
+      this._navigateUp(currentModalForm);
+    }
+  }
+  _navigateToNext() {
+    let currentModalForm = this._getCurrentOpenModalForm();
+    if (currentModalForm) {
+      this._navigateDown(currentModalForm);
+    }
+  }
+  _navigateUp(modalForm) {
+    let openRownum = modalForm.rownum;
+    if (openRownum > 1) {
+      modalForm.close();
+      let previousModalForm = this._getModalFormInstanceByRownum(openRownum - 1);
+      previousModalForm.open();
+    }
+  }
+  _navigateDown(modalForm) {
+    let openRownum = modalForm.rownum;
+    let $formset = this.$formset.formset("getOrCreate");
+    let activeFormCount = $formset.activeFormCount();
+    
+    if (openRownum < activeFormCount) {
+      modalForm.close();
+      let nextModalForm = this._getModalFormInstanceByRownum(openRownum + 1);
+      nextModalForm.open();
+    } else if (openRownum == activeFormCount) {
+      modalForm.close();
+      $formset.addForm();
+    }
+  }
+  _getCurrentOpenModalForm() {
+    return this._modalForms.find(modalForm => 
+      !modalForm.isDeleted() && !modalForm.modalInstance._isHidden
+    );
+  }
+  _updateNavigationButtons(modalForm) {
+    let $formset = this.$formset.formset("getOrCreate");
+    let activeFormCount = $formset.activeFormCount();
+    let currentRownum = modalForm.rownum;
+    
+    let previousButton = modalForm._modalEl.querySelector('[data-formset-previous-button]');
+    let nextButton = modalForm._modalEl.querySelector('[data-formset-next-button]');
+    let plusIcon = modalForm._modalEl.querySelector('[data-plus-icon]');
+    let nextIcon = modalForm._modalEl.querySelector('[data-next-icon]');
+    
+    if (previousButton) {
+      if (currentRownum <= 1) {
+        previousButton.disabled = true;
+        previousButton.classList.add('disabled');
+      } else {
+        previousButton.disabled = false;
+        previousButton.classList.remove('disabled');
+      }
+    }
+    
+    if (nextButton && currentRownum >= activeFormCount) {
+      if (plusIcon && nextIcon) {
+        nextIcon.style.display = 'none';
+        plusIcon.style.display = 'inline';
+      }
+    } else {
+      if (plusIcon && nextIcon) {
+        nextIcon.style.display = 'inline';
+        plusIcon.style.display = 'none';
+      }
+    }
   }
   /**
    * Check if the page loaded form from the server to configure them.
@@ -164,39 +245,20 @@ class FormsetModal {
   _onModalFormKeyUp(e, modalForm) {
     if (e.ctrlKey && (e.keyCode === 38 || e.keyCode === 40)) {
       e.preventDefault();
-      let openRownum = modalForm.rownum;
-      let $formset = this.$formset.formset("getOrCreate");
-      let activeFormCount = $formset.activeFormCount();
       if (e.keyCode == 38) {
         // Up
-        if (openRownum > 1) {
-          modalForm.close();
-          let previewsModalForm = this._getModalFormInstanceByRownum(
-            openRownum - 1
-          );
-          previewsModalForm.open();
-        }
+        this._navigateUp(modalForm);
       }
-
       if (e.keyCode === 40) {
         // Down
-        if (openRownum < activeFormCount) {
-          modalForm.close();
-          let nextsModalForm = this._getModalFormInstanceByRownum(
-            openRownum + 1
-          );
-          nextsModalForm.open();
-        }
-        if (openRownum == activeFormCount) {
-          modalForm.close();
-          $formset.addForm();
-        }
+        this._navigateDown(modalForm);
       }
     }
   }
   _onModalFormOpen(modalForm) {
     this._refresh();
     window.crispyFormsetModal.onModalFormOpened(modalForm);
+    this._updateNavigationButtons(modalForm);
   }
   _onModalFormClose(modalForm) {
     this._refresh();

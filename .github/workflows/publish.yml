@@ -1,4 +1,4 @@
-name: Release
+name: Publish Python Package with uv
 
 on:
   push:
@@ -6,36 +6,22 @@ on:
     - '*'
 
 jobs:
-  build:
+  publish:
     if: github.repository == 'blasferna/django-crispy-formset-modal'
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
+    - name: Set up uv
+      uses: astral-sh/setup-uv@v6
 
-      - name: Install dependencies
-        run: |
-          python -m pip install -U pip
-          python -m pip install -U setuptools twine wheel
-      - name: Build package
-        run: |
-          python setup.py --version
-          python setup.py sdist --format=gztar bdist_wheel
-          twine check dist/*
-      - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
-      - name: Publish distribution 📦 to PyPI
-        if: startsWith(github.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+    - name: Build with uv
+      run: uv build
+
+    - name: Publish with uv
+      env:
+        UV_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+      run: uv publish --token $UV_PYPI_TOKEN
+

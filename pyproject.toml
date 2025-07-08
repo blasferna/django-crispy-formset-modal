@@ -1,0 +1,59 @@
+[project]
+name = "django-crispy-formset-modal"
+version = "0.12"
+description = "Django app that provides an easy way to manage and manipulate formsets using modals with Django Crispy Forms."
+authors = [
+    { name = "Blas Isaias Fernández Cáceres", email = "blasferna@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers=[
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4.0",
+    "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+]
+
+dependencies = [
+    "Django>=3.2",
+    "django-crispy-forms>=1.13.0",
+    "django-extra-views>=0.14.0",
+]
+
+[dependency-groups]
+dev = [
+    "crispy_bootstrap4",
+    "crispy_bootstrap5",
+    "crispy_tailwind",
+    "crispy_bulma",
+    "markdown",
+    "gunicorn",
+    "whitenoise",
+    "mkdocs-material",
+    "markdown-include",
+    "mdx-gh-links",
+]
+
+[project.urls]
+homepage = "https://blasferna.github.io/django-crispy-formset-modal"
+bugs = "https://github.com/blasferna/django-crispy-formset-modal/issues"
+
+[tool.setuptools.packages]
+find = { include = ["crispy_formset_modal", "*.py", "*.html", "*.css", "*.po", "*.mo", "*.map", "LICENSE", "README.md"] }
+
+
+[tool.uv]
+package = true
+

@@ -50,58 +50,42 @@ If you'd like to run the demo application on your local machine. Please follow t
 
 #### Instructions
 
+First, you need to have `uv` installed. If you don't have it, you can install it following the [official instructions](https://docs.astral.sh/uv/getting-started/installation/).
 
-1. Clone this repository to your local machine:
+1. Clone this repository:
 
-```
-git clone https://github.com/blasferna/django-crispy-formset-modal.git
-```
+    ```
+    git clone https://github.com/blasferna/django-crispy-formset-modal.git
+    cd django-crispy-formset-modal
+    ```
 
-2. Navigate to the project's directory:
+2. Set up the project environment:
 
-```
-cd django-crispy-formset-modal
-```
+    ```
+    uv sync --dev
+    ```
+    This single command will:
+    - Create a virtual environment in `.venv` if one doesn't exist.
+    - Install all project and development dependencies specified in `pyproject.toml` into the environment.
 
-3. Set up a virtual environment. This step helps to isolate the Python environment for this project:
 
-```
-python -m venv venv
-```
+3. Run development tasks with `uv run`:
 
-4. Activate the virtual environment:
+    The `uv run` command executes scripts within the project's virtual environment, so you don't need to activate it manually.
 
-`On Windowds`
+    Apply database migrations:
+    ```shell
+    uv run python manage.py migrate
+    ```
 
-```
-.\venv\Scripts\activate
-```
+    Start the local development server:
+    ```shell
+    uv run python manage.py runserver
+    ```
 
-`On Unix or MacOS:`
+4.  **Explore the demo:**
 
-```
-source venv/bin/activate
-```
-
-5. Install the required dependencies:
-
-```
-pip install -r requirements.txt
-```
-
-6. Apply migrations:
-
-```
-python manage.py migrate
-```
-
-7. Start the local development server:
-
-```
-python manage.py runserver
-```
-
-8. Visit `http://localhost:8000` on your browser to explore the demo application.
+    Visit `http://localhost:8000` in your browser to see the application.
 
 
 ## License

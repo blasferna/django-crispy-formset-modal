@@ -1,7 +1,7 @@
 # Changelog
 
 ## [0.14] 2025-07-08
-* Fix: include uncompiled javascript files in the package.
+* Fix: compile and include JavaScript files in the package.
 
 ## [0.13] 2025-07-08
 * Django Autocomplete Light compatibility fix.

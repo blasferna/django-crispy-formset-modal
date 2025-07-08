@@ -73,5 +73,48 @@ Django Crispy Formset Modal uses several templates to render formsets and modals
 
 To override these templates, create a directory named `crispy_formset_modal` and a subdirectory named as per the template pack you're using (for instance, `bootstrap4`) in your project's templates directory. Then create your custom versions of `form.html`, `modal.html`, `edit_button.html`, `empty_estate.html`  and/or `table.html` in this directory.
 
+
+## Adding Navigation Buttons to Modal
+
+When overriding the `modal.html` template, you can add navigation buttons that allow users to navigate through formset records without closing the modal. This provides a more seamless editing experience.
+
+To add navigation buttons, include the following HTML structure in your custom `modal.html` template:
+
+```html
+<div class="navigation-buttons">
+  <button
+    type="button"
+    class="btn btn-sm btn-outline-secondary"
+    data-formset-previous-button
+  >
+    <i class="bi bi-chevron-up" data-previous-icon></i>
+  </button>
+  <button
+    type="button"
+    class="btn btn-sm btn-outline-secondary"
+    data-formset-next-button
+  >
+    <i class="bi bi-chevron-down" data-next-icon></i>
+    <i class="bi bi-plus-lg" data-plus-icon style="display: none;"></i>
+  </button>
+</div>
+```
+
+### Navigation Button Behavior
+
+* **Previous Button** (`data-formset-previous-button`): Navigates to the previous record in the formset. The button is automatically disabled when viewing the first record.
+
+* **Next Button** (`data-formset-next-button`): Navigates to the next record in the formset. When viewing the last record, the button icon changes to a plus sign and clicking it will create a new record.
+
+### Keyboard Navigation
+
+Navigation buttons also support keyboard shortcuts:
+
+* **Ctrl + Up Arrow**: Navigate to the previous record
+* **Ctrl + Down Arrow**: Navigate to the next record (or create new record if on the last one)
+
+The navigation buttons automatically handle state management, including disabling/enabling buttons based on the current position in the formset and updating icons appropriately.
+
+
 With these customization options, you can modify Django Crispy Formset Modal to better suit the needs of your project. In the next section, we'll discuss how to troubleshoot common issues and where to seek further assistance.
 

@@ -1,0 +1,5 @@
+recursive-include crispy_formset_modal *.html *.css *.js *.po *.mo *.map
+include LICENSE
+include pyproject.toml
+include README.md
+

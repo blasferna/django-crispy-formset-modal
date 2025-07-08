@@ -4,7 +4,7 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = "django-crispy-formset-modal"
-version = "0.13"
+version = "0.14"
 description = "Django app that provides an easy way to manage and manipulate formsets using modals with Django Crispy Forms."
 authors = [
     { name = "Blas Isaias Fernández Cáceres", email = "blasferna@gmail.com" }

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.15] 2025-09-23
+* Improve event handling in modal and enhance Inputmask check in utils.
+* Allow both Ctrl and Meta key for navigation in modal form.
+* Update key event handling to use onKeyDown for modal forms.
+
 ## [0.14] 2025-07-08
 * Fix: compile and include JavaScript files in the package.
 

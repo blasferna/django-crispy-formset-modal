@@ -39,7 +39,7 @@ export function getTextValue(el) {
       .join(" ")
       .trim();
   } else {
-    if (has(el, "inputmask")) {
+    if ("inputmask" in el && el.inputmask) {
       textValue = el.inputmask.undoValue;
     } else {
       if (el.getAttribute("type") == "date") {

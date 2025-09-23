@@ -130,9 +130,13 @@ class Modal {
   }
   _addEventListeners() {
     let that = this;
-    this._targetEl.addEventListener("keyup", function (e) {
+    this._targetEl.addEventListener("keydown", function (e) {
       if (e.which === 27) {
+        if (e.defaultPrevented){ 
+          return;
+        }
         e.preventDefault();
+        e.stopPropagation();
         that.hide();
       }
     });
@@ -164,7 +168,7 @@ class Modal {
     this._options.onShow(this);
 
     let firstEl = this._targetEl.querySelector(
-      'select, input:not([type="hidden"]'
+      'select, input:not([type="hidden"])'
     );
     if (firstEl) {
       firstEl.setAttribute("tabindex", "0");

@@ -207,8 +207,8 @@ class FormsetModal {
       size: that.modalSize,
       placement: that.modalPlacement,
       templatePack: that.templatePack,
-      onKeyUp: function (e, modalForm) {
-        that._onModalFormKeyUp(e, modalForm);
+      onKeyDown: function (e, modalForm) {
+        that._onModalFormKeyDown(e, modalForm);
       },
       onOpen: function (modalForm) {
         that._onModalFormOpen(modalForm);
@@ -242,9 +242,10 @@ class FormsetModal {
     }
     executeAllCalculatedFields();
   }
-  _onModalFormKeyUp(e, modalForm) {
+  _onModalFormKeyDown(e, modalForm) {
     if ((e.ctrlKey || e.metaKey) && (e.keyCode === 38 || e.keyCode === 40)) {
       e.preventDefault();
+      e.stopPropagation();
       if (e.keyCode == 38) {
         // Up
         this._navigateUp(modalForm);

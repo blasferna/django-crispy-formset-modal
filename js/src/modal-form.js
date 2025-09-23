@@ -4,6 +4,7 @@ import { gettext } from "./utils";
 const modalFormOptions = {
   parent: null,
   modalId: null,
+  onKeyDown: function () {},
   onKeyUp: function () {},
   onClose: function () {},
   onOpen: function () {},
@@ -99,6 +100,9 @@ class ModalForm {
       });
       modal._targetEl.addEventListener("keyup", function (e) {
         that._options.onKeyUp(e, that);
+      });
+      modal._targetEl.addEventListener("keydown", function (e) {
+        that._options.onKeyDown(e, that);
       });
       this.modalInstance = modal;
       this._hiddeDefaultDeleteBt(deleteBt);

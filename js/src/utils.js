@@ -1,11 +1,4 @@
 let gettext = window.gettext;
-const _has = Object.prototype.hasOwnProperty;
-/**
- * Checks if the object has the property passed as argument
- */
-export function has(object, key) {
-  return _has.call(object, key);
-}
 
 export function uuidv4() {
   function randomHex() {

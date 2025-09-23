@@ -243,7 +243,7 @@ class FormsetModal {
     executeAllCalculatedFields();
   }
   _onModalFormKeyUp(e, modalForm) {
-    if (e.ctrlKey && (e.keyCode === 38 || e.keyCode === 40)) {
+    if ((e.ctrlKey || e.metaKey) && (e.keyCode === 38 || e.keyCode === 40)) {
       e.preventDefault();
       if (e.keyCode == 38) {
         // Up

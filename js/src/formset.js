@@ -101,21 +101,43 @@ class Formset {
         return $newForm;
     }
     /**
+    * Form controls may live in a portaled modal linked via data-cfm-modal-id.
+    */
+    $formControls($form) {
+        var $controls = $form.find(':input');
+        var modalId = $form.attr('data-cfm-modal-id');
+        if (modalId) {
+            var modalEl = document.getElementById(modalId);
+            if (modalEl && !$.contains($form[0], modalEl)) {
+                $controls = $controls.add($(modalEl).find(':input'));
+            }
+        }
+        return $controls;
+    }
+    /**
     * Attach any events needed to a new form
     */
     bindForm($form, index) {
         var prefix = this.formsetPrefix + '-' + index;
+        var _this = this;
         $form.data(pluginName + '__formPrefix', prefix);
 
-        var $delete = $form.find('[name=' + prefix + '-DELETE]');
+        var $delete = this.$formControls($form).filter('[name=' + prefix + '-DELETE]');
+        if (!$delete.length) {
+            $delete = $form.find('[name=' + prefix + '-DELETE]');
+        }
 
         // Trigger `formAdded` / `formDeleted` events when delete checkbox value changes
         $delete.change(function (event) {
+            var $controls = _this.$formControls($form);
             if ($delete.is(':checked')) {
                 $form.attr('data-formset-form-deleted', '');
                 // Remove required property and pattern attribute to allow submit, back it up to data field
-                $form.find(':required').data(pluginName + '-required-field', true).prop('required', false);
-                $form.find('input[pattern]').each(function () {
+                // Use the DOM property — `:required` is not available in all jQuery builds.
+                $controls.filter(function () {
+                    return this.required;
+                }).data(pluginName + '-required-field', true).prop('required', false);
+                $controls.filter('input[pattern]').each(function () {
                     var pattern = $(this).attr('pattern');
                     $(this).data(pluginName + '-field-pattern', pattern).removeAttr('pattern');
                 });
@@ -123,10 +145,10 @@ class Formset {
             } else {
                 $form.removeAttr('data-formset-form-deleted');
                 // Restore required property and pattern attributes from data field
-                $form.find('*').filter(function () {
+                $controls.filter(function () {
                     return $(this).data(pluginName + '-required-field') === true;
                 }).prop('required', true);
-                $form.find('input').each(function () {
+                $controls.filter('input').each(function () {
                     var pattern = $(this).data(pluginName + '-field-pattern');
                     if (pattern) {
                         $(this).attr('pattern', pattern);
@@ -137,6 +159,12 @@ class Formset {
         }).trigger('change');
 
         var $deleteButton = $form.find(this.opts.deleteButton);
+        if (!$deleteButton.length) {
+            var modalId = $form.attr('data-cfm-modal-id');
+            if (modalId) {
+                $deleteButton = $('#' + modalId).find(this.opts.deleteButton);
+            }
+        }
 
         $deleteButton.bind('click', function () {
             $delete.attr('checked', true).change();

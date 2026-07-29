@@ -279,8 +279,7 @@ class FormsetModal {
         let td = checkbox.closest("td");
         let btnOpenRow = tr.querySelector("[data-formset-modal-toggle]");
         let modalId = btnOpenRow.getAttribute("data-formset-modal-toggle");
-        let modalEl = document.getElementById(modalId);
-        let formsetFormEl = modalEl.closest("[data-formset-form]");
+        let formsetFormEl = that._getFormsetFormEl(modalId);
         checkbox.checked = checked;
         that._checker(tr, td, formsetFormEl, checkbox);
       });
@@ -292,11 +291,36 @@ class FormsetModal {
         "[data-formset-form-selected]:not([data-formset-form-deleted])"
       );
       selectedForms.forEach(function (selectedForm) {
-        let deleteCheckbox = selectedForm.querySelector(".formset-delete");
+        let deleteCheckbox = that._getDeleteCheckbox(selectedForm);
         deleteCheckbox.checked = true;
         deleteCheckbox.dispatchEvent(new Event("change"));
       });
     });
+  }
+  _getFormsetFormEl(modalId) {
+    let modalForm = this._modalForms.find(
+      (instance) => instance.modalId === modalId
+    );
+    if (modalForm) {
+      return modalForm.targetEl;
+    }
+    return this.targetEl.querySelector(
+      `[data-formset-form][data-cfm-modal-id="${modalId}"]`
+    );
+  }
+  _getDeleteCheckbox(formsetFormEl) {
+    let deleteCheckbox = formsetFormEl.querySelector(".formset-delete");
+    if (deleteCheckbox) {
+      return deleteCheckbox;
+    }
+    let modalId = formsetFormEl.getAttribute("data-cfm-modal-id");
+    if (modalId) {
+      let modalEl = document.getElementById(modalId);
+      if (modalEl) {
+        return modalEl.querySelector(".formset-delete");
+      }
+    }
+    return null;
   }
   _checkSelectAllState() {
     let table = this._table;
@@ -373,7 +397,7 @@ class FormsetModal {
     this._modalForms.forEach(function (modalForm) {
       if (!modalForm.isDeleted()) {
         let row = {};
-        modalForm.targetEl
+        modalForm._modalEl
           .querySelectorAll("input, select, textarea")
           .forEach(function (el) {
             let match = el.name.match(

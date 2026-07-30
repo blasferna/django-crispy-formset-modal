@@ -49,6 +49,7 @@ def pytest_configure(debug=False):
         LANGUAGES=(
             ("en", "English"),
             ("es", "Spanish"),
+            ("de", "German"),
         ),
         # Set the default language for your site.
         LANGUAGE_CODE="en",

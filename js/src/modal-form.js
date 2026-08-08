@@ -28,6 +28,7 @@ class ModalForm {
   }
   _init() {
     this._modalEl = document.getElementById(this.modalId);
+    this.targetEl.setAttribute("data-cfm-modal-id", this.modalId);
     this._modalTitleEl = this._modalEl.querySelector(".modal-title");
     this._modalDeleteBt = this._modalEl.querySelector(".formset-delete");
     this._createModal();
@@ -43,9 +44,12 @@ class ModalForm {
       });
   }
   hasFieldError(fieldId) {
-    let fieldWrapper = this.targetEl.querySelector(`#div_${fieldId}`);
+    let fieldWrapper = this._modalEl.querySelector(`#div_${fieldId}`);
     let hasError = false;
     let errorText = "";
+    if (!fieldWrapper) {
+      return { error: hasError, text: errorText };
+    }
     fieldWrapper
       .querySelectorAll("[id^='error_']")
       .forEach(function (el) {
@@ -55,11 +59,11 @@ class ModalForm {
     return { error: hasError, text: errorText };
   }
   hasNonFieldError() {
-    return this.targetEl.querySelector(".non-field-errors") != null;
+    return this._modalEl.querySelector(".non-field-errors") != null;
   }
   errors() {
     let errors = {};
-    this.targetEl.querySelectorAll("[id^='error_']").forEach(function (el) {
+    this._modalEl.querySelectorAll("[id^='error_']").forEach(function (el) {
       let fieldId = el.id.replace("error_", "");
       let fieldName = fieldId.replace(/.*?-.*?-(.*)/, "$1");
       errors[fieldName] = {
@@ -86,7 +90,7 @@ class ModalForm {
   _createModal() {
     let that = this;
     if (!this.modalInstance) {
-      let deleteBt = this.targetEl.querySelector(".formset-delete");
+      let deleteBt = this._modalEl.querySelector(".formset-delete");
       let modal = new Modal(this._modalEl, {
         placement: that._options.placement,
         size: that._options.size,

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.16] 2026-07-29
+* Portal open formset modals (and their backdrops) to `document.body` so ancestors with `overflow: hidden` no longer clip them.
+* Associate portaled modal fields with the parent form via the HTML `form` attribute while open, then restore each modal under its formset row on close.
+
 ## [0.15] 2025-09-23
 * Improve event handling in modal and enhance Inputmask check in utils.
 * Allow both Ctrl and Meta key for navigation in modal form.

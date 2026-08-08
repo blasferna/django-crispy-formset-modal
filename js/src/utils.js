@@ -132,7 +132,7 @@ export function injectStyles() {
       .cfm-cursor-pointer {
         cursor: pointer;
       }
-      [data-formset-form] .modal {
+      .modal.cfm {
         z-index: 1051;
       }
       `;

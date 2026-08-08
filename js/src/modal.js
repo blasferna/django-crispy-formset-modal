@@ -10,6 +10,8 @@ const modalDefault = {
   onToggle: () => {},
 };
 
+const FORM_CONTROL_SELECTOR = "input, select, textarea, button";
+
 class Modal {
   constructor(targetEl = null, options = {}) {
     this._targetEl = targetEl;
@@ -19,6 +21,7 @@ class Modal {
       ...options,
     };
     this._isHidden = true;
+    this._formId = null;
     this._bsParent = this._parentEl.closest(".modal");
     this._init();
     this._addEventListeners();
@@ -32,13 +35,58 @@ class Modal {
       this._targetEl.firstElementChild.classList.add(c);
     });
   }
+  _getOwnerForm() {
+    return this._parentEl.closest("form");
+  }
+  _ensureFormId(formEl) {
+    if (!formEl.id) {
+      formEl.id = `cfm-form-${uuidv4()}`;
+    }
+    return formEl.id;
+  }
+  _associateFormControls() {
+    const formEl = this._getOwnerForm();
+    if (!formEl) {
+      this._formId = null;
+      return;
+    }
+    this._formId = this._ensureFormId(formEl);
+    this._targetEl.querySelectorAll(FORM_CONTROL_SELECTOR).forEach((el) => {
+      if (!el.hasAttribute("form")) {
+        el.setAttribute("form", this._formId);
+        el.setAttribute("data-cfm-form-attr", "");
+      }
+    });
+  }
+  _clearFormAssociation() {
+    this._targetEl
+      .querySelectorAll(`${FORM_CONTROL_SELECTOR}[data-cfm-form-attr]`)
+      .forEach((el) => {
+        el.removeAttribute("form");
+        el.removeAttribute("data-cfm-form-attr");
+      });
+    this._formId = null;
+  }
+  _portalToBody() {
+    if (this._targetEl.parentElement !== document.body) {
+      document.body.appendChild(this._targetEl);
+    }
+  }
+  _restoreToHome() {
+    if (
+      this._parentEl &&
+      this._targetEl.parentElement !== this._parentEl
+    ) {
+      this._parentEl.appendChild(this._targetEl);
+    }
+  }
   _createBackdrop(id) {
     if (this._isHidden) {
       const backdropEl = document.createElement("div");
       backdropEl.setAttribute("data-ref-id", id);
       backdropEl.setAttribute("modal-backdrop", "");
       backdropEl.classList.add(...this._getClasses("backdrop"));
-      this._parentEl.append(backdropEl);
+      document.body.append(backdropEl);
       backdropEl.offsetWidth;
       backdropEl.classList.add(...this._getClasses("opacity50"));
     }
@@ -153,6 +201,8 @@ class Modal {
   }
   show() {
     const id = uuidv4();
+    this._associateFormControls();
+    this._portalToBody();
     this._targetEl.classList.add(...this._getClasses("flex"));
     this._targetEl.classList.remove(...this._getClasses("hidden"));
     this._targetEl.setAttribute("aria-modal", "true");
@@ -188,6 +238,8 @@ class Modal {
     this._targetEl.removeAttribute("aria-modal");
     this._targetEl.removeAttribute("role");
     this._destroyBackdropEl();
+    this._clearFormAssociation();
+    this._restoreToHome();
     this._isHidden = true;
 
     document.body.classList.remove("modal-open");

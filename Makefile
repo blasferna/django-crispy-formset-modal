@@ -23,8 +23,8 @@ servedocs: docs ## compile the docs watching for changes
 	uv run mkdocs serve
 
 makemessages: ## run django makemessages command
-	uv run manage.py makemessages --locale=es --ignore=venv --ignore=node_modules -ignore=staticfiles --ignore=site -a -d djangojs 
-	uv run manage.py makemessages --locale=es --ignore=venv --ignore=site -e html -e py -a
+	uv run manage.py makemessages --locale=es --locale=de --ignore=venv --ignore=node_modules --ignore=staticfiles --ignore=site -d djangojs 
+	uv run manage.py makemessages --locale=es --locale=de --ignore=venv --ignore=site -e html -e py
 
 compilemessages: ## run django compilemessages command
 	uv run manage.py compilemessages --ignore=venv

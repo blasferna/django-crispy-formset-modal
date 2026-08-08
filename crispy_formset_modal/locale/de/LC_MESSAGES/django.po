@@ -1,0 +1,61 @@
+# django-crispy-formset-modal
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Blas Fernandez blasferna@gmail.com, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-30 08:03-0300\n"
+"PO-Revision-Date: 2026-07-30\n"
+"Last-Translator: Blas Fernandez blasferna@gmail.com\n"
+"Language: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/modal.html:7
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/modal.html:7
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/modal.html:6
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/edit_button.html:4
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/modal.html:7
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/empty_state.html:3
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/table.html:58
+msgid "No data"
+msgstr "Keine Daten"
+
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/modal.html:17
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:73
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/modal.html:16
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/table.html:73
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/modal.html:15
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/table.html:73
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/modal.html:18
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/table.html:81
+msgid "Delete"
+msgstr "Löschen"
+
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/modal.html:18
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/modal.html:17
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/modal.html:16
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/modal.html:19
+msgid "Close"
+msgstr "Schließen"
+
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap4/table.html:72
+#: crispy_formset_modal/templates/crispy_formset_modal/bootstrap5/table.html:72
+#: crispy_formset_modal/templates/crispy_formset_modal/bulma/table.html:72
+#: crispy_formset_modal/templates/crispy_formset_modal/tailwind/table.html:80
+msgid "Add"
+msgstr "Hinzufügen"

@@ -218,6 +218,18 @@ class FormsetModal {
       },
     };
     let modalForm = new ModalForm(targetEl, options);
+    // Clicks must be on the modal: after portal the dialog lives on
+    // document.body and no longer bubbles to the formset.
+    modalForm._modalEl.addEventListener("click", function (e) {
+      if (e.target.closest("[data-formset-previous-button]")) {
+        e.preventDefault();
+        that._navigateToPrevious();
+      }
+      if (e.target.closest("[data-formset-next-button]")) {
+        e.preventDefault();
+        that._navigateToNext();
+      }
+    });
     that._modalForms.push(modalForm);
     return modalForm;
   }

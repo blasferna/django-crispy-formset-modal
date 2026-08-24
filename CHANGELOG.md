@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.16] 2026-07-29
+## [0.16] 2026-08-24
 * Portal open formset modals (and their backdrops) to `document.body` so ancestors with `overflow: hidden` no longer clip them.
 * Associate portaled modal fields with the parent form via the HTML `form` attribute while open, then restore each modal under its formset row on close.
 * Fix: bind previous/next navigation clicks on each modal so they work after the modal is portaled to `document.body`.

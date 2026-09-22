@@ -1,5 +1,8 @@
 # Changelog
 
+## [Unreleased]
+* Fix: blur the focused field when hiding a modal so Escape applies the in-progress change after the v0.16 portal hide.
+
 ## [0.16] 2026-08-24
 * Portal open formset modals (and their backdrops) to `document.body` so ancestors with `overflow: hidden` no longer clip them.
 * Associate portaled modal fields with the parent form via the HTML `form` attribute while open, then restore each modal under its formset row on close.

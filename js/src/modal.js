@@ -232,6 +232,14 @@ class Modal {
     }
   }
   hide() {
+    const active = document.activeElement;
+    if (
+      active &&
+      this._targetEl.contains(active) &&
+      typeof active.blur === "function"
+    ) {
+      active.blur();
+    }
     this._targetEl.classList.add(...this._getClasses("hidden"));
     this._targetEl.classList.remove(...this._getClasses("flex"));
     this._targetEl.setAttribute("aria-hidden", "true");

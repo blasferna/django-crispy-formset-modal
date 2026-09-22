@@ -178,16 +178,30 @@ class Modal {
   }
   _addEventListeners() {
     let that = this;
-    this._targetEl.addEventListener("keydown", function (e) {
-      if (e.which === 27) {
-        if (e.defaultPrevented){ 
+    // Capture so we commit/blur before Inputmask undoOnEscape runs on the input.
+    this._targetEl.addEventListener(
+      "keydown",
+      function (e) {
+        if (e.which !== 27 && e.key !== "Escape" && e.key !== "Esc") {
           return;
+        }
+        if (e.defaultPrevented) {
+          return;
+        }
+        const active = document.activeElement;
+        if (
+          active &&
+          that._targetEl.contains(active) &&
+          typeof active.blur === "function"
+        ) {
+          active.blur();
         }
         e.preventDefault();
         e.stopPropagation();
         that.hide();
-      }
-    });
+      },
+      true
+    );
   }
   toggle() {
     if (this._isHidden) {

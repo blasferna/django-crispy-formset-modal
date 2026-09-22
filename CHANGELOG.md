@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.18] 2026-09-22
+* Fix: handle Escape in capture so Inputmask `undoOnEscape` does not revert the typed value before the modal closes.
+
 ## [0.17] 2026-09-22
 * Fix: blur the focused field when hiding a modal so Escape applies the in-progress change after the v0.16 portal hide.
 

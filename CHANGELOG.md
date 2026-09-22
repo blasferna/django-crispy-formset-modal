@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [0.17] 2026-09-22
 * Fix: blur the focused field when hiding a modal so Escape applies the in-progress change after the v0.16 portal hide.
 
 ## [0.16] 2026-08-24
